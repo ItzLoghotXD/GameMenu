@@ -1,0 +1,12 @@
+name: GameMenu
+version: '${project.version}'
+main: me.itzloghotxd.gamemenu.GameMenu
+api-version: '1.16'
+prefix: GameMenu
+load: STARTUP
+loadbefore: [none]
+depend: [none]
+softdepend: [none]
+authors: [ItzLoghotXD]
+description: A simple minecraft Server Menu plugin.
+website: none

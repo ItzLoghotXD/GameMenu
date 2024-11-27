@@ -1,5 +1,6 @@
 package me.itzloghotxd.gamemenu;
 
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Level;
@@ -38,6 +39,6 @@ public final class GamemenuPlugin extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        Bukkit.getScheduler().cancelTasks(this);
     }
 }

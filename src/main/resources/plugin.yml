@@ -1,6 +1,6 @@
 name: GameMenu
 version: '${project.version}'
-main: me.itzloghotxd.gamemenu.GameMenu
+main: me.itzloghotxd.gamemenu.GamemenuPlugin
 api-version: '1.16'
 prefix: GameMenu
 load: STARTUP

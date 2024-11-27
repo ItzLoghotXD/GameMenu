@@ -9,7 +9,7 @@
     <version>0.0.1</version>
     <packaging>jar</packaging>
 
-    <name>GameMenu</name>
+    <name>GamemenuPlugin</name>
 
     <description>A simple minecraft Server Menu plugin.</description>
     <properties>

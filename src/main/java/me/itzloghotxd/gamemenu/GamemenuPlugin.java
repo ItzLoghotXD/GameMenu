@@ -14,7 +14,7 @@ public final class GamemenuPlugin extends JavaPlugin {
         long start = System.currentTimeMillis();
         this.getLogger().log(Level.INFO, "");
         this.getLogger().log(Level.INFO, "GameMenu");
-        this.getLogger().log(Level.INFO, "Loading" + this.getDescription().getVersion());
+        this.getLogger().log(Level.INFO, "Version " + this.getDescription().getVersion());
         this.getLogger().log(Level.INFO, "Made with ❤ by ItzLoghotXD");
         this.getLogger().log(Level.INFO, "");
 

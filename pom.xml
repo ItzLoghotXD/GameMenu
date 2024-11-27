@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>me.itzloghotxd</groupId>
-    <artifactId>GameMenu</artifactId>
-    <version>0.0.1</version>
+    <artifactId>Gamemenu</artifactId>
+    <version>0.0.2</version>
     <packaging>jar</packaging>
 
     <name>GamemenuPlugin</name>

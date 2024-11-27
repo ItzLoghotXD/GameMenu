@@ -13,11 +13,11 @@ public final class GamemenuPlugin extends JavaPlugin {
     public void onEnable() {
         long start = System.currentTimeMillis();
         this.getLogger().log(Level.INFO, "");
-        this.getLogger().log(Level.INFO, "GameManu");
+        this.getLogger().log(Level.INFO, "GameMenu");
         this.getLogger().log(Level.INFO, "Loading" + this.getDescription().getVersion());
         this.getLogger().log(Level.INFO, "Made with  by ItzLoghotXD");
         this.getLogger().log(Level.INFO, "");
-        
+
         try {
             Class.forName("com.destroystokyo.paper.PaperConfig");
         } catch (ClassNotFoundException var4) {
@@ -31,6 +31,7 @@ public final class GamemenuPlugin extends JavaPlugin {
         }
 
         if (this.getServer().getPluginManager().isPluginEnabled(this)) {
+            this.getLogger().log(Level.INFO, "");
             this.getLogger().log(Level.INFO, "Successfully loaded in" + (System.currentTimeMillis() - start) + "ms!");
         }
     }

@@ -10,7 +10,6 @@ public final class GamemenuPlugin extends JavaPlugin {
     public GamemenuPlugin() {
     }
 
-    @Override
     public void onEnable() {
         long start = System.currentTimeMillis();
         this.getLogger().log(Level.INFO, "");
@@ -37,7 +36,6 @@ public final class GamemenuPlugin extends JavaPlugin {
         }
     }
 
-    @Override
     public void onDisable() {
         Bukkit.getScheduler().cancelTasks(this);
     }

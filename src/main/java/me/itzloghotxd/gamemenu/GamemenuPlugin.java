@@ -1,6 +1,6 @@
 package me.itzloghotxd.gamemenu;
 
-import me.itzloghotxd.gamemenu.listener.player.PlayerItemDrop;
+import me.itzloghotxd.gamemenu.listener.player.PlayerItemDropEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -32,6 +32,7 @@ public final class GamemenuPlugin extends JavaPlugin {
         }
 
         if (this.getServer().getPluginManager().isPluginEnabled(this)) {
+            registerEvents();
             this.getLogger().log(Level.INFO, "");
             this.getLogger().log(Level.INFO, "Successfully loaded in " + (System.currentTimeMillis() - start) + "ms!");
         }
@@ -42,6 +43,6 @@ public final class GamemenuPlugin extends JavaPlugin {
     }
 
     private void registerEvents() {
-        getServer().getPluginManager().registerEvents(new PlayerItemDrop(), this);
+        getServer().getPluginManager().registerEvents(new PlayerItemDropEvent(), this);
     }
 }

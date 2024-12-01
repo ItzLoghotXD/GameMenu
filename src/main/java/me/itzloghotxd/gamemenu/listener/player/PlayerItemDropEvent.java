@@ -8,8 +8,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.inventory.ItemStack;
 
-public class PlayerItemDrop implements Listener {
-    public PlayerItemDrop() {
+public class PlayerItemDropEvent implements Listener {
+    public PlayerItemDropEvent() {
     }
     @EventHandler
     public void onPlayerDropItem(PlayerDropItemEvent event) {

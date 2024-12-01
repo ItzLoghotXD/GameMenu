@@ -32,7 +32,7 @@ public final class GamemenuPlugin extends JavaPlugin {
 
         if (this.getServer().getPluginManager().isPluginEnabled(this)) {
             this.getLogger().log(Level.INFO, "");
-            this.getLogger().log(Level.INFO, "Successfully loaded in" + (System.currentTimeMillis() - start) + "ms!");
+            this.getLogger().log(Level.INFO, "Successfully loaded in " + (System.currentTimeMillis() - start) + "ms!");
         }
     }
 

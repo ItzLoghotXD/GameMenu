@@ -1,5 +1,6 @@
 package me.itzloghotxd.gamemenu;
 
+import me.itzloghotxd.gamemenu.listener.player.PlayerItemDrop;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -38,5 +39,9 @@ public final class GamemenuPlugin extends JavaPlugin {
 
     public void onDisable() {
         Bukkit.getScheduler().cancelTasks(this);
+    }
+
+    private void registerEvents() {
+        getServer().getPluginManager().registerEvents(new PlayerItemDrop(), this);
     }
 }

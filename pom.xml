@@ -6,14 +6,14 @@
 
     <groupId>me.itzloghotxd</groupId>
     <artifactId>Gamemenu</artifactId>
-    <version>0.1.1</version>
+    <version>0.1.2</version>
     <packaging>jar</packaging>
 
     <name>GamemenuPlugin</name>
 
     <description>A simple minecraft Server Menu plugin.</description>
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>16</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 <!--    <url>none</url>-->

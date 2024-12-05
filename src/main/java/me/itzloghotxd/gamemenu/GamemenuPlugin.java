@@ -9,11 +9,14 @@ import java.util.logging.Level;
 
 public final class GamemenuPlugin extends JavaPlugin {
 
+    private static GamemenuPlugin plugin;
+
     public GamemenuPlugin() {
     }
 
     public void onEnable() {
         long start = System.currentTimeMillis();
+        plugin = this;
         this.getLogger().log(Level.INFO, "");
         this.getLogger().log(Level.INFO, "GameMenu");
         this.getLogger().log(Level.INFO, "Version " + this.getDescription().getVersion());
@@ -46,5 +49,9 @@ public final class GamemenuPlugin extends JavaPlugin {
     private void registerEvents() {
         getServer().getPluginManager().registerEvents(new PlayerItemDropEvent(), this);
         getServer().getPluginManager().registerEvents(new PlayerOffHandSwapEvent(), this);
+    }
+
+    public static GamemenuPlugin getPlugin() {
+        return plugin;
     }
 }

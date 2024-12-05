@@ -6,7 +6,7 @@
 
     <groupId>me.itzloghotxd</groupId>
     <artifactId>Gamemenu</artifactId>
-    <version>0.1.2</version>
+    <version>0.1.5</version>
     <packaging>jar</packaging>
 
     <name>GamemenuPlugin</name>

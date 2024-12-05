@@ -21,14 +21,14 @@ public class ConfigManager {
     }
 
     public void saveFiles() {
-        this.getFiles(ConfigType.DATA).save();
+        this.getFile(ConfigType.DATA).save();
     }
 
     public void reloadFiles() {
         this.configurations.values().forEach(ConfigHandler::reload);
     }
 
-    public ConfigHandler getFiles(ConfigType type) {
+    public ConfigHandler getFile(ConfigType type) {
         return (ConfigHandler)this.configurations.get(type);
     }
 
@@ -39,4 +39,10 @@ public class ConfigManager {
     public FileConfiguration getFileConfiguration(File file) {
         return YamlConfiguration.loadConfiguration(file);
     }
+
+    public FileConfiguration getConfig(ConfigType type) {
+        return GamemenuPlugin.getPlugin().getConfigManager().getFile(type).getConfig();
+    }
+
+//    FileConfiguration config = GamemenuPlugin.getPlugin().getConfigManager().getConfig(ConfigType.SETTINGS);
 }

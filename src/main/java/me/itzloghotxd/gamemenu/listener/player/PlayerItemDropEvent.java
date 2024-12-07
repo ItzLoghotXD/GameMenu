@@ -24,7 +24,7 @@ public class PlayerItemDropEvent implements Listener {
         ItemStack itemStack = event.getItemDrop().getItemStack();
         Player player = event.getPlayer();
         item = config.getString("server_selector.item");
-        if (itemStack.getType() == Material.NETHER_STAR) {
+        if (itemStack.getType() == Material.getMaterial(item)) {
             event.setCancelled(true);
             player.sendMessage(ChatColor.RED + "You can't drop this item");
         }

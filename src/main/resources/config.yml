@@ -1,0 +1,21 @@
+#
+# AUTHOR: Loghot (ItzLoghotXD)
+# WIKI: https://github.com/ItzLoghotXD/GameMenu/wiki
+# Copyright (c) ItzLoghotXD 2024-2024. All rights reserved.
+#--------
+# SERVER SELECTOR
+#   The custom item which is used for
+#   server selector which is present in
+#   player's hotbar
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# | SERVER SELECTOR SETTINGS                 |
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+server_selector:
+  item: "NETHER_STAR"
+  slot: ""
+  display_name: ""
+  lore:
+    - ""
+    - ""

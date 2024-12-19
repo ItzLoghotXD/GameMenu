@@ -22,6 +22,7 @@ public class ConfigManager {
 
     public void saveFiles() {
         this.getFile(ConfigType.DATA).save();
+        this.getFile(ConfigType.SETTINGS).save();
     }
 
     public void reloadFiles() {

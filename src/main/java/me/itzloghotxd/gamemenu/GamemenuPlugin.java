@@ -4,7 +4,10 @@ import me.itzloghotxd.gamemenu.config.ConfigManager;
 import me.itzloghotxd.gamemenu.listener.player.PlayerItemDropEvent;
 import me.itzloghotxd.gamemenu.listener.player.PlayerOffHandSwapEvent;
 import org.bukkit.Bukkit;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.logging.Level;
 
@@ -40,7 +43,7 @@ public final class GamemenuPlugin extends JavaPlugin {
         if (this.getServer().getPluginManager().isPluginEnabled(this)) {
             this.configManager = new ConfigManager();
             this.configManager.loadFiles(this);
-            registerEvents();
+            this.registerEvents();
             this.getLogger().log(Level.INFO, "");
             this.getLogger().log(Level.INFO, "Successfully loaded in " + (System.currentTimeMillis() - start) + "ms!");
         }
@@ -49,6 +52,12 @@ public final class GamemenuPlugin extends JavaPlugin {
     public void onDisable() {
         Bukkit.getScheduler().cancelTasks(this);
         this.configManager.saveFiles();
+    }
+
+    public void onReload() {
+        long start = System.currentTimeMillis();
+        this.configManager.reloadFiles();
+        this.getLogger().log(Level.INFO, "Successfully reloaded in " + (System.currentTimeMillis() - start) + "ms!");
     }
 
     private void registerEvents() {

@@ -23,7 +23,7 @@ public class PlayerItemDropEvent implements Listener {
         FileConfiguration config = GamemenuPlugin.getPlugin().getConfigManager().getConfig(ConfigType.SETTINGS);
         ItemStack itemStack = event.getItemDrop().getItemStack();
         Player player = event.getPlayer();
-        item = config.getString("server_selector.item");
+        item = config.getString("server_menu.item");
         if (itemStack.getType() == Material.getMaterial(item)) {
             event.setCancelled(true);
             player.sendMessage(ChatColor.RED + "You can't drop this item");

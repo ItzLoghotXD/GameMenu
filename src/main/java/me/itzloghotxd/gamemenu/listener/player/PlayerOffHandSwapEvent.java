@@ -21,7 +21,7 @@ public class PlayerOffHandSwapEvent implements Listener {
     public void onPlayerOffHandSwap(PlayerSwapHandItemsEvent event) {
         FileConfiguration config = GamemenuPlugin.getPlugin().getConfigManager().getConfig(ConfigType.SETTINGS);
         ItemStack itemStack = event.getOffHandItem();
-        item = config.getString("server_selector.item");
+        item = config.getString("server_menu.item");
         if (itemStack.getType() == Material.getMaterial(item)) {
             event.setCancelled(true);
         }

@@ -2,6 +2,7 @@ package me.itzloghotxd.gamemenu.listener.inventory;
 
 import me.itzloghotxd.gamemenu.GamemenuPlugin;
 import me.itzloghotxd.gamemenu.config.ConfigType;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -24,9 +25,8 @@ public class ItemClickedEvent implements Listener {
         item = config.getString("server_menu.item");
         if (event.getWhoClicked() instanceof Player player) {
             if (clickedItem.getType() == Material.getMaterial(item)){
-                player.sendMessage("You clicked on " + item + ", preset on " + clickedInventory.getType().toString());
-            }else {
-                player.sendMessage("You clicked on " + clickedItem.getType().toString() + ", preset on " + clickedInventory.getType().toString());
+                event.setCancelled(true);
+                Bukkit.dispatchCommand(player,"gm menu");
             }
         }
     }

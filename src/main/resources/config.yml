@@ -8,6 +8,9 @@
 #   server menu which is present in
 #   player's hotbar
 
+# Should we allow player to swap items(server_menu excluded)
+disable_off_hand_swap: false
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 # | SERVER MENU SETTINGS                 |
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#

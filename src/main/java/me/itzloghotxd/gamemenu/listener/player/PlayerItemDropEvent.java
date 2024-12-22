@@ -2,7 +2,7 @@ package me.itzloghotxd.gamemenu.listener.player;
 
 import me.itzloghotxd.gamemenu.GamemenuPlugin;
 import me.itzloghotxd.gamemenu.config.ConfigType;
-import org.bukkit.ChatColor;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -13,20 +13,25 @@ import org.bukkit.inventory.ItemStack;
 
 public class PlayerItemDropEvent implements Listener {
 
-    private String item;
-
     public PlayerItemDropEvent() {
     }
 
     @EventHandler
     public void onPlayerDropItem(PlayerDropItemEvent event) {
         FileConfiguration config = GamemenuPlugin.getPlugin().getConfigManager().getConfig(ConfigType.SETTINGS);
-        ItemStack itemStack = event.getItemDrop().getItemStack();
-        Player player = event.getPlayer();
-        item = config.getString("server_menu.item");
-        if (itemStack.getType() == Material.getMaterial(item)) {
+        String item = config.getString("server_menu.item");
+
+        ItemStack droppedItem = event.getItemDrop().getItemStack();
+
+        Material material = Material.getMaterial(item);
+        if (material == null) {
+            return;
+        }
+
+        if (droppedItem.getType() == material) {
+            Player player = event.getPlayer();
             event.setCancelled(true);
-            player.sendMessage(ChatColor.RED + "You can't drop this item");
+            Bukkit.dispatchCommand(player, "gm menu");
         }
     }
 }

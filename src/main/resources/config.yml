@@ -16,7 +16,7 @@ disable_off_hand_swap: false
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 server_menu:
-  item: "NETHER_STAR"
+  item: NETHER_STAR
   slot:
   display_name: ""
   lore:

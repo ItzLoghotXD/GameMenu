@@ -10,3 +10,37 @@ load: STARTUP
 authors: [ItzLoghotXD]
 description: A simple minecraft Server Menu plugin.
 #website: none
+commands:
+  gamemenu:
+    description: The main command for GameMenu.
+    usage: /<command> <subcommand>
+    aliases: [gm]
+    permission: gamemenu.command.gm
+    permission-message: You do not have permission to use this command.
+
+permissions:
+  gamemenu.*:
+    description: Gives access to all GameMenu permissions
+    default: op
+    children:
+      gamemenu.command.*: true
+  gamemenu.command.*:
+    description: Gives access to all command permissions
+    default: op
+    children:
+      gamemenu.command.gm: true
+      gamemenu.command.help: true
+      gamemenu.command.reload: true
+      gamemenu.command.menu: true
+  gamemenu.command.gm:
+    description: Gives access to the /gamemenu command
+    default: true
+  gamemenu.command.help:
+    description: Gives access to the help subcommand
+    default: true
+  gamemenu.command.reload:
+    description: Gives access to the reload subcommand
+    default: op
+  gamemenu.command.menu:
+    description: Gives access to the menu subcommand
+    default: true

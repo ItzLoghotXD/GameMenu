@@ -1,21 +1,21 @@
 package me.itzloghotxd.gamemenu;
 
+import me.itzloghotxd.gamemenu.commands.CommandHandler;
+import me.itzloghotxd.gamemenu.commands.CommandManager;
 import me.itzloghotxd.gamemenu.config.ConfigManager;
 import me.itzloghotxd.gamemenu.listener.inventory.ItemClickedEvent;
 import me.itzloghotxd.gamemenu.listener.player.PlayerItemDropEvent;
 import me.itzloghotxd.gamemenu.listener.player.PlayerOffHandSwapEvent;
 import org.bukkit.Bukkit;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Level;
 
-public final class GamemenuPlugin extends JavaPlugin implements Listener {
+public final class GamemenuPlugin extends JavaPlugin{
 
     private static GamemenuPlugin plugin;
     private ConfigManager configManager;
+    private CommandManager commandManager;
 
     public GamemenuPlugin() {
     }
@@ -44,6 +44,8 @@ public final class GamemenuPlugin extends JavaPlugin implements Listener {
         if (this.getServer().getPluginManager().isPluginEnabled(this)) {
             this.configManager = new ConfigManager();
             this.configManager.loadFiles(this);
+            this.commandManager = new CommandManager();
+            new CommandHandler(this);
             this.registerEvents();
             this.getLogger().log(Level.INFO, "");
             this.getLogger().log(Level.INFO, "Successfully loaded in " + (System.currentTimeMillis() - start) + "ms!");
@@ -65,7 +67,6 @@ public final class GamemenuPlugin extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(new PlayerItemDropEvent(), this);
         getServer().getPluginManager().registerEvents(new PlayerOffHandSwapEvent(), this);
         getServer().getPluginManager().registerEvents(new ItemClickedEvent(), this);
-        getServer().getPluginManager().registerEvents(this,this);
     }
 
     public static GamemenuPlugin getPlugin() {
@@ -76,14 +77,7 @@ public final class GamemenuPlugin extends JavaPlugin implements Listener {
         return this.configManager;
     }
 
-    @EventHandler
-    public void onPlayerChat(AsyncPlayerChatEvent event) {
-        String message = event.getMessage();
-
-        // Check if the player sent the message "gm reload"
-        if (message.equalsIgnoreCase("gm reload")) {
-            event.getPlayer().sendMessage("You sent 'gm reload'!");
-            this.onReload();
-        }
+    public CommandManager getCommandManager() {
+        return this.commandManager;
     }
 }

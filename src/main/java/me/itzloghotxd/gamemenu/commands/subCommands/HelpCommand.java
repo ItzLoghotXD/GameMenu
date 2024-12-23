@@ -1,18 +1,14 @@
 package me.itzloghotxd.gamemenu.commands.subCommands;
 
-import me.itzloghotxd.gamemenu.GamemenuPlugin;
 import me.itzloghotxd.gamemenu.commands.Command;
-import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
 import java.util.List;
 
-public class ReloadCommand implements Command {
-
+public class HelpCommand implements Command {
     @Override
     public void execute(CommandSender sender, String[] args) {
-        GamemenuPlugin.getPlugin().onReload();
-        sender.sendMessage(ChatColor.DARK_GREEN + "GameMenu " + ChatColor.GRAY + "|" + ChatColor.GREEN + " Reloaded!");
+        // I will add this later cuz I am very lazy :)
     }
 
     @Override
@@ -22,6 +18,6 @@ public class ReloadCommand implements Command {
 
     @Override
     public String getPermission() {
-        return "gamemenu.command.reload";
+        return "gamemenu.command.help";
     }
 }

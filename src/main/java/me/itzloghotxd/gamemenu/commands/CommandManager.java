@@ -1,6 +1,6 @@
 package me.itzloghotxd.gamemenu.commands;
 
-import me.itzloghotxd.gamemenu.commands.subCommands.ReloadCommand;
+import me.itzloghotxd.gamemenu.commands.subCommands.*;
 import org.bukkit.command.CommandSender;
 
 import java.util.HashMap;
@@ -12,7 +12,9 @@ public class CommandManager {
     private final Map<String, Command> subCommands = new HashMap<>();
 
     public CommandManager() {
+        registerCommand("help", new HelpCommand());
         registerCommand("reload", new ReloadCommand());
+        registerCommand("menu", new MenuCommand());
     }
 
     public void registerCommand(String name, Command command) {

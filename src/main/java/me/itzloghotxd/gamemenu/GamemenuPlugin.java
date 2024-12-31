@@ -3,12 +3,15 @@ package me.itzloghotxd.gamemenu;
 import me.itzloghotxd.gamemenu.commands.CommandHandler;
 import me.itzloghotxd.gamemenu.commands.CommandManager;
 import me.itzloghotxd.gamemenu.config.ConfigManager;
+import me.itzloghotxd.gamemenu.inventory.InventoryPlayer;
 import me.itzloghotxd.gamemenu.listener.inventory.ItemClickedEvent;
 import me.itzloghotxd.gamemenu.listener.player.PlayerItemDropEvent;
 import me.itzloghotxd.gamemenu.listener.player.PlayerOffHandSwapEvent;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.HashMap;
 import java.util.logging.Level;
 
 public final class GamemenuPlugin extends JavaPlugin{
@@ -16,6 +19,8 @@ public final class GamemenuPlugin extends JavaPlugin{
     private static GamemenuPlugin plugin;
     private ConfigManager configManager;
     private CommandManager commandManager;
+
+    private static final HashMap<Player, InventoryPlayer> playerInventory = new HashMap<>();
 
     public GamemenuPlugin() {
     }
@@ -79,5 +84,18 @@ public final class GamemenuPlugin extends JavaPlugin{
 
     public CommandManager getCommandManager() {
         return this.commandManager;
+    }
+
+    public static InventoryPlayer getInventoryPlayer(Player player) {
+        InventoryPlayer inventoryPlayer;
+
+        if (playerInventory.containsKey(player)) {
+            return playerInventory.get(player);
+        }else {
+            inventoryPlayer = new InventoryPlayer(player);
+            playerInventory.put(player, inventoryPlayer);
+
+            return inventoryPlayer;
+        }
     }
 }

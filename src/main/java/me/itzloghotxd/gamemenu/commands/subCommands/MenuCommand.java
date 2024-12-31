@@ -1,14 +1,21 @@
 package me.itzloghotxd.gamemenu.commands.subCommands;
 
+import me.itzloghotxd.gamemenu.GamemenuPlugin;
 import me.itzloghotxd.gamemenu.commands.Command;
+import me.itzloghotxd.gamemenu.inventory.guis.MainMenu;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 import java.util.List;
 
 public class MenuCommand implements Command {
     @Override
     public void execute(CommandSender sender, String[] args) {
-        // I will add this later cuz I am very lazy and I haven't made GUIs :)
+        if (sender instanceof Player player){
+
+            MainMenu menu = new MainMenu(GamemenuPlugin.getInventoryPlayer(player));
+            menu.open();
+        }
     }
 
     @Override

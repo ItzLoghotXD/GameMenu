@@ -19,7 +19,7 @@ public class PlayerItemDropEvent implements Listener {
     @EventHandler
     public void onPlayerDropItem(PlayerDropItemEvent event) {
         FileConfiguration config = GamemenuPlugin.getPlugin().getConfigManager().getConfig(ConfigType.SETTINGS);
-        String item = config.getString("server_menu.item");
+        String item = config.getString("server_menu_item.material", "NETHER_STAR");
 
         ItemStack droppedItem = event.getItemDrop().getItemStack();
 

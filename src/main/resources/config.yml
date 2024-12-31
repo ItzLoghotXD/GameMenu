@@ -8,17 +8,38 @@
 #   server menu which is present in
 #   player's hotbar
 
-# Should we allow player to swap items(server_menu excluded)
+# Should we allow player to swap items(server_menu_item excluded)
 disable_off_hand_swap: false
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 # | SERVER MENU SETTINGS                 |
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
-server_menu:
-  item: NETHER_STAR
+server_menu_item:
+  material: NETHER_STAR
   slot:
   display_name: ""
   lore:
     - ""
     - ""
+
+menu:
+  slots: 54
+  title:
+  items:
+    CLOSE:
+      material: BARRIER
+      slot: 50
+      display_name: "&4Close"
+      lore:
+        - "this is line 1"
+        - "this is line 2"
+        - "&cthis is colorful line"
+    TEST:
+      material: CRAFTING_TABLE
+      slot: 32
+      display_name: "&aCrafting Table"
+      lore:
+        - "&7Opens the Crafting Grid."
+        - ""
+        - "&eClick to open!"

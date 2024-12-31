@@ -18,7 +18,7 @@ public class ItemClickedEvent implements Listener {
     @EventHandler
     public void onItemClick(InventoryClickEvent event) {
         FileConfiguration config = GamemenuPlugin.getPlugin().getConfigManager().getConfig(ConfigType.SETTINGS);
-        String item = config.getString("server_menu.item");
+        String item = config.getString("server_menu_item.material", "NETHER_STAR");
 
         var clickedItem = event.getCurrentItem();
         if (clickedItem == null || clickedItem.getType() == Material.AIR) {

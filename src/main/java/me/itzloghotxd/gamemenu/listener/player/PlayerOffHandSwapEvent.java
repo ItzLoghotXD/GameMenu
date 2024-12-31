@@ -17,7 +17,7 @@ public class PlayerOffHandSwapEvent implements Listener {
     @EventHandler
     public void onPlayerOffHandSwap(PlayerSwapHandItemsEvent event) {
         FileConfiguration config = GamemenuPlugin.getPlugin().getConfigManager().getConfig(ConfigType.SETTINGS);
-        String item = config.getString("server_menu.item");
+        String item = config.getString("server_menu_item.material", "NETHER_STAR");
         boolean offHandSwap = config.getBoolean("disable_off_hand_swap", false);
 
         if (offHandSwap) {

@@ -3,6 +3,7 @@ package me.itzloghotxd.gamemenu;
 import me.itzloghotxd.gamemenu.commands.CommandHandler;
 import me.itzloghotxd.gamemenu.commands.CommandManager;
 import me.itzloghotxd.gamemenu.config.ConfigManager;
+import me.itzloghotxd.gamemenu.inventory.InventoryListener;
 import me.itzloghotxd.gamemenu.inventory.InventoryPlayer;
 import me.itzloghotxd.gamemenu.listener.inventory.ItemClickedEvent;
 import me.itzloghotxd.gamemenu.listener.player.PlayerItemDropEvent;
@@ -72,6 +73,7 @@ public final class GamemenuPlugin extends JavaPlugin{
         getServer().getPluginManager().registerEvents(new PlayerItemDropEvent(), this);
         getServer().getPluginManager().registerEvents(new PlayerOffHandSwapEvent(), this);
         getServer().getPluginManager().registerEvents(new ItemClickedEvent(), this);
+        getServer().getPluginManager().registerEvents(new InventoryListener(), this);
     }
 
     public static GamemenuPlugin getPlugin() {

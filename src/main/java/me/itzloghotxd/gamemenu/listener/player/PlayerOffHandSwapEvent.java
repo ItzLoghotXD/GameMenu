@@ -31,7 +31,7 @@ public class PlayerOffHandSwapEvent implements Listener {
             return;
         }
 
-        if (itemStack.getType() == material) {
+        if (itemStack != null && itemStack.getType() == material) {
             event.setCancelled(true);
         }
     }

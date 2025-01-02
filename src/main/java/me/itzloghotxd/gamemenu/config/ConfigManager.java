@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ConfigManager {
-    private Map<ConfigType, ConfigHandler> configurations = new HashMap();
+    private final Map<ConfigType, ConfigHandler> configurations = new HashMap<>();
 
     public ConfigManager() {
     }

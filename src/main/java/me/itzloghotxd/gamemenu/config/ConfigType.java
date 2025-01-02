@@ -4,6 +4,6 @@ public enum ConfigType {
     SETTINGS,
     DATA;
 
-    private ConfigType() {
+    ConfigType() {
     }
 }

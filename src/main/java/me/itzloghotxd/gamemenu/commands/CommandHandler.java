@@ -10,6 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Objects;
 
 public class CommandHandler implements CommandExecutor, TabExecutor {
 
@@ -17,8 +18,8 @@ public class CommandHandler implements CommandExecutor, TabExecutor {
 
     public CommandHandler(JavaPlugin plugin) {
         commandManager = GamemenuPlugin.getPlugin().getCommandManager();
-        plugin.getCommand("gamemenu").setExecutor(this);
-        plugin.getCommand("gamemenu").setTabCompleter(this);
+        Objects.requireNonNull(plugin.getCommand("gamemenu")).setExecutor(this);
+        Objects.requireNonNull(plugin.getCommand("gamemenu")).setTabCompleter(this);
     }
 
     @Override

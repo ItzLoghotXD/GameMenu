@@ -12,12 +12,8 @@ public class MenuCommand implements Command {
     @Override
     public void execute(CommandSender sender, String[] args) {
         if (sender instanceof Player player){
-            if (args.length > 0 && args[0].equalsIgnoreCase("close")) {
-                player.closeInventory();
-            } else {
-                MainMenu menu = new MainMenu(GamemenuPlugin.getInventoryPlayer(player));
-                menu.open();
-            }
+            MainMenu menu = new MainMenu(GamemenuPlugin.getInventoryPlayer(player));
+            menu.open();
         }
     }
 

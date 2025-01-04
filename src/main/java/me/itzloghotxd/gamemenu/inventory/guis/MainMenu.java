@@ -4,9 +4,11 @@ import me.itzloghotxd.gamemenu.GamemenuPlugin;
 import me.itzloghotxd.gamemenu.config.ConfigType;
 import me.itzloghotxd.gamemenu.inventory.AbstractInventory;
 import me.itzloghotxd.gamemenu.inventory.InventoryPlayer;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -47,7 +49,38 @@ public class MainMenu extends AbstractInventory {
     }
     @Override
     public void handleInventory(InventoryClickEvent event) {
+        ItemStack clickedItem = event.getCurrentItem();
+        if (clickedItem == null || !clickedItem.hasItemMeta()) return;
 
+        ItemMeta meta = clickedItem.getItemMeta();
+        if (meta == null) return;
+
+        String displayName = meta.getDisplayName();
+        Material material = clickedItem.getType();
+
+        String path = null;
+
+        for (String entry : Objects.requireNonNull(config.getConfigurationSection("menu.items")).getKeys(false)) {
+            String itemDisplayName = ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(config.getString("menu.items." + entry + ".display_name")));
+            Material itemMaterial = Material.matchMaterial(Objects.requireNonNull(config.getString("menu.items." + entry + ".material")));
+
+            if (itemMaterial != null && itemMaterial == material && itemDisplayName.equals(displayName)) {
+                path = "menu.items." + entry;
+                break;
+            }
+        }
+
+        if (path != null) {
+            Player player = (Player) event.getWhoClicked();
+            List<String> commands = config.getStringList(path + ".commands");
+            for (String command : commands) {
+                if (command.equalsIgnoreCase("close")) {
+                    player.closeInventory();
+                } else {
+                    Bukkit.dispatchCommand(player, command);
+                }
+            }
+        }
     }
 
     @Override

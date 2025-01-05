@@ -19,8 +19,8 @@ public class InventoryListener implements Listener {
         InventoryHolder holder = Objects.requireNonNull(event.getClickedInventory()).getHolder();
 
         if (holder instanceof AbstractInventory inventory) {
-            event.setCancelled(true);
             inventory.handleInventory(event);
+            event.setCancelled(true);
         }
 
     }

@@ -30,8 +30,8 @@ public class PlayerItemDropEvent implements Listener {
 
         if (droppedItem.getType() == material) {
             Player player = event.getPlayer();
-            event.setCancelled(true);
             Bukkit.dispatchCommand(player, "gm menu");
+            event.setCancelled(true);
         }
     }
 }

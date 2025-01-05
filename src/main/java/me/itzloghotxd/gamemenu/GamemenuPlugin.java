@@ -5,7 +5,8 @@ import me.itzloghotxd.gamemenu.commands.CommandManager;
 import me.itzloghotxd.gamemenu.config.ConfigManager;
 import me.itzloghotxd.gamemenu.inventory.InventoryListener;
 import me.itzloghotxd.gamemenu.inventory.InventoryPlayer;
-import me.itzloghotxd.gamemenu.listener.inventory.ItemClickedEvent;
+import me.itzloghotxd.gamemenu.listener.hotbar.HotbarClickEvent;
+import me.itzloghotxd.gamemenu.listener.player.PlayerInteractionEvent;
 import me.itzloghotxd.gamemenu.listener.player.PlayerItemDropEvent;
 import me.itzloghotxd.gamemenu.listener.player.PlayerOffHandSwapEvent;
 import org.bukkit.Bukkit;
@@ -70,9 +71,10 @@ public final class GamemenuPlugin extends JavaPlugin{
     }
 
     private void registerEvents() {
+        getServer().getPluginManager().registerEvents(new HotbarClickEvent(), this);
         getServer().getPluginManager().registerEvents(new PlayerItemDropEvent(), this);
         getServer().getPluginManager().registerEvents(new PlayerOffHandSwapEvent(), this);
-        getServer().getPluginManager().registerEvents(new ItemClickedEvent(), this);
+        getServer().getPluginManager().registerEvents(new PlayerInteractionEvent(), this);
         getServer().getPluginManager().registerEvents(new InventoryListener(), this);
     }
 

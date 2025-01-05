@@ -2,50 +2,38 @@
 # AUTHOR: Loghot (ItzLoghotXD)
 # WIKI: https://github.com/ItzLoghotXD/GameMenu/wiki
 # Copyright (c) ItzLoghotXD 2024-2024. All rights reserved.
-#--------
-# SERVER MENU ITEM
-#   The custom item which is used for
-#   server menu which is present in
-#   player's hotbar
-
-# Should we allow player to swap items(server_menu_item excluded)
 disable_off_hand_swap: false
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-# | SERVER MENU ITEM SETTINGS                |
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-
 server_menu_item:
   material: NETHER_STAR
-  slot:
-  display_name: ""
+  display_name: ''
   lore:
-    - ""
-    - ""
-
+    - ''
+    - ''
 menu:
   slots: 54
-  title: "&aServer Menu"
+  title: '&aServer Menu'
   items:
     Report_Island_Name:
       material: ANVIL
       slot: 8
-      display_name: "&aReport Island Name"
+      display_name: '&aReport Island Name'
       lore:
-        - "&7You can report this island"
-        - "&7if you think it has an"
-        - "&7in appropriate name."
-        - ""
-        - "&eClick to Report it!"
+        - '&7You can report this island'
+        - '&7if you think it has an'
+        - '&7in appropriate name.'
+        - ''
+        - '&eClick to Report it!'
     Crafting_Table:
       material: CRAFTING_TABLE
       slot: 31
-      display_name: "&aCrafting Table"
+      display_name: '&aCrafting Table'
       lore:
-        - "&7Opens the Crafting Grid."
-        - ""
-        - "&eClick to open!"
+        - '&7Opens the Crafting Grid.'
+        - ''
+        - '&eClick to open!'
     CLOSE:
       material: BARRIER
       slot: 49
-      display_name: "&4Close"
+      display_name: '&4Close'
+      commands:
+        - "close"

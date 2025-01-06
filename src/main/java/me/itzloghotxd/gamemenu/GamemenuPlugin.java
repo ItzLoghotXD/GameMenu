@@ -6,6 +6,7 @@ import me.itzloghotxd.gamemenu.config.ConfigManager;
 import me.itzloghotxd.gamemenu.inventory.InventoryListener;
 import me.itzloghotxd.gamemenu.inventory.InventoryPlayer;
 import me.itzloghotxd.gamemenu.listener.hotbar.HotbarClickEvent;
+import me.itzloghotxd.gamemenu.listener.hotbar.HotbarItem;
 import me.itzloghotxd.gamemenu.listener.player.PlayerInteractionEvent;
 import me.itzloghotxd.gamemenu.listener.player.PlayerItemDropEvent;
 import me.itzloghotxd.gamemenu.listener.player.PlayerOffHandSwapEvent;
@@ -30,48 +31,50 @@ public final class GamemenuPlugin extends JavaPlugin{
     public void onEnable() {
         long start = System.currentTimeMillis();
         plugin = this;
-        this.getLogger().log(Level.INFO, "");
-        this.getLogger().log(Level.INFO, "GameMenu");
-        this.getLogger().log(Level.INFO, "Version " + this.getDescription().getVersion());
-        this.getLogger().log(Level.INFO, "Made with <3 by ItzLoghotXD");
-        this.getLogger().log(Level.INFO, "");
+        getLogger().log(Level.INFO, "");
+        getLogger().log(Level.INFO, "GameMenu");
+        getLogger().log(Level.INFO, "Version " + this.getDescription().getVersion());
+        getLogger().log(Level.INFO, "Made with <3 by ItzLoghotXD");
+        getLogger().log(Level.INFO, "https://github.com/ItzLoghotXD/GameMenu");
+        getLogger().log(Level.INFO, "");
 
         try {
             Class.forName("com.destroystokyo.paper.PaperConfig");
         } catch (ClassNotFoundException var4) {
-            this.getLogger().severe("============= PAPER NOT DETECTED =============");
-            this.getLogger().severe("Gamemenu requires Paper to run, you can download");
-            this.getLogger().severe("Paper here: https://papermc.io/downloads.");
-            this.getLogger().severe("The plugin will now disable.");
-            this.getLogger().severe("============= PAPER NOT DETECTED =============");
-            this.getPluginLoader().disablePlugin(this);
+            getLogger().severe("============= PAPER NOT DETECTED =============");
+            getLogger().severe("Gamemenu requires Paper to run, you can download");
+            getLogger().severe("Paper here: https://papermc.io/downloads/all.");
+            getLogger().severe("The plugin will now disable.");
+            getLogger().severe("============= PAPER NOT DETECTED =============");
+            getPluginLoader().disablePlugin(this);
             return;
         }
 
         if (this.getServer().getPluginManager().isPluginEnabled(this)) {
-            this.configManager = new ConfigManager();
-            this.configManager.loadFiles(this);
-            this.commandManager = new CommandManager();
+            configManager = new ConfigManager();
+            configManager.loadFiles(this);
+            commandManager = new CommandManager();
             new CommandHandler(this);
-            this.registerEvents();
-            this.getLogger().log(Level.INFO, "");
-            this.getLogger().log(Level.INFO, "Successfully loaded in " + (System.currentTimeMillis() - start) + "ms!");
+            registerEvents();
+            getLogger().log(Level.INFO, "");
+            getLogger().log(Level.INFO, "Successfully loaded in " + (System.currentTimeMillis() - start) + "ms!");
         }
     }
 
     public void onDisable() {
         Bukkit.getScheduler().cancelTasks(this);
-        this.configManager.saveFiles();
+        configManager.saveFiles();
     }
 
     public void onReload() {
         long start = System.currentTimeMillis();
-        this.configManager.reloadFiles();
-        this.getLogger().log(Level.INFO, "Successfully reloaded in " + (System.currentTimeMillis() - start) + "ms!");
+        configManager.reloadFiles();
+        getLogger().log(Level.INFO, "Successfully reloaded in " + (System.currentTimeMillis() - start) + "ms!");
     }
 
     private void registerEvents() {
         getServer().getPluginManager().registerEvents(new HotbarClickEvent(), this);
+        getServer().getPluginManager().registerEvents(new HotbarItem(), this);
         getServer().getPluginManager().registerEvents(new PlayerItemDropEvent(), this);
         getServer().getPluginManager().registerEvents(new PlayerOffHandSwapEvent(), this);
         getServer().getPluginManager().registerEvents(new PlayerInteractionEvent(), this);

@@ -6,7 +6,7 @@ prefix: GameMenu
 load: STARTUP
 #loadbefore: [none]
 #depend: [none]
-#softdepend: [none]
+softdepend: ["PlaceholderAPI"]
 authors: [ItzLoghotXD]
 description: A simple minecraft Server Menu plugin.
 #website: none

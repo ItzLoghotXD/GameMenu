@@ -22,13 +22,14 @@ public class PlayerInteractionEvent implements Listener {
         String item = config.getString("server_menu_item.material", "NETHER_STAR");
 
         Material material = Material.getMaterial(item);
+        int slot = config.getInt("server_menu_item.slot", 8);
 
         if (event.getHand() != EquipmentSlot.HAND) return;
 
         PlayerInventory inventory = event.getPlayer().getInventory();
-        if (inventory.getHeldItemSlot() == 8) {
+        if (inventory.getHeldItemSlot() == slot) {
             if (inventory.getItemInMainHand().getType() == material) {
-                Bukkit.dispatchCommand(event.getPlayer(), "gm menu");
+                event.getPlayer().performCommand("gm menu");
                 event.setCancelled(true);
             }
         }

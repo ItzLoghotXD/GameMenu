@@ -2,27 +2,69 @@
 # AUTHOR: Loghot (ItzLoghotXD)
 # WIKI: https://github.com/ItzLoghotXD/GameMenu/wiki
 # Copyright (c) ItzLoghotXD 2024-2024. All rights reserved.
+#--------
+# SERVER MENU ITEM
+#   The custom item which is used for
+#   server menu which is present in
+#   player's hotbar
+#--------
+# SERVER MENU/GUI
+#   The default gui which is opens when
+#   player execute 'gm menu' command
+#--------
+# BUILT IN PLUGIN PLACEHOLDERS
+#   %player% - Returns player name
+#   %online% - Returns number of players online
+#   %online_max% - Returns number of max player slots
+#        *** USE PLACEHOLDERAPI TO GET MORE ***
+#  (https://hangar.papermc.io/HelpChat/PlaceholderAPI)
+#--------
+# BUILT-IN FEATURES
+#   You can use minecraft color codes
+#   like '&a' for green you can find all
+#   code here https://www.digminecraft.com/lists/color_list_pc.php
+
+# Should we allow player to swap items(server_menu_item excluded)
 disable_off_hand_swap: false
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# | SERVER MENU ITEM SETTINGS                |
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 server_menu_item:
-  material: NETHER_STAR
-  display_name: ''
-  lore:
+  material: NETHER_STAR   # The material which is use for this custom item. (you can find all item names here
+  # https://github.com/ItzLoghotXD/GameMenu)
+  slot: 8   # Number of slot in which the item should be (it starts from 0 to 8)
+  display_name: '&aServer Menu &7(Right Click)'   # The display name of this item
+  lore:   # Lore(s) of this item
+    - '&7View all of your Server'
+    - '&7progress, including your Skills,'
+    - '&7Collections, Recipes, and more!'
     - ''
-    - ''
+    - '&eClick to open'
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# | SERVER MENU/GUI SETTINGS                 |
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 menu:
-  slots: 54
-  title: '&aServer Menu'
-  items:
+  slots: 54   # Total number of slots in the gui (if you enter any number which is not divisible by 9
+    # it will auto adjust it)
+  title: '&aServer Menu'   # The title of this menu
+  items:   # You can set items here which will be in the menu
+    # Some example items
     Report_Island_Name:
-      material: ANVIL
-      slot: 8
-      display_name: '&aReport Island Name'
-      lore:
+      material: ANVIL   # The material which will be displayed in the menu for this item
+      slot: 8   # The number of slot in which the item will be
+      display_name: '&aReport Island Name'   # The display name of this item
+      lore:   # Lore(s) of this item
         - '&7You can report this island'
         - '&7if you think it has an'
         - '&7in appropriate name.'
         - ''
         - '&eClick to Report it!'
+      commands:   # The list of commands which will be executed when the player will right/left click on it
+      # (It has a built-in command 'close' which will close the menu) but be careful because it will execute
+      # the command as console
+        - 'msg @p hi?'
     Crafting_Table:
       material: CRAFTING_TABLE
       slot: 31
@@ -31,9 +73,11 @@ menu:
         - '&7Opens the Crafting Grid.'
         - ''
         - '&eClick to open!'
+      commands:
+        - 'msg @p hi?'
     CLOSE:
       material: BARRIER
       slot: 49
       display_name: '&4Close'
       commands:
-        - "close"
+        - 'close'

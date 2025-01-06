@@ -4,6 +4,7 @@ import me.itzloghotxd.gamemenu.GamemenuPlugin;
 import me.itzloghotxd.gamemenu.config.ConfigType;
 import me.itzloghotxd.gamemenu.inventory.AbstractInventory;
 import me.itzloghotxd.gamemenu.inventory.InventoryPlayer;
+import me.itzloghotxd.gamemenu.utility.PlaceholderUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -74,10 +75,11 @@ public class MainMenu extends AbstractInventory {
             Player player = (Player) event.getWhoClicked();
             List<String> commands = config.getStringList(path + ".commands");
             for (String command : commands) {
+                command = PlaceholderUtil.setPlaceholders(command, player);
                 if (command.equalsIgnoreCase("close")) {
                     player.closeInventory();
                 } else {
-                    Bukkit.dispatchCommand(player, command);
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
                 }
             }
         }

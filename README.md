@@ -13,7 +13,7 @@ Fully customizable, you can customize this plugin by editing `config.yml`
 - [Permissions](#permissions)
 - [Contributing](#contributing)
 - [License](#license)
-- [Thankyou](#Thankyou/Donations)
+- [Thankyou](#thankyoudonations)
 
 ## Introduction
 

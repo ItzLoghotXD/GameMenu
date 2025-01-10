@@ -6,7 +6,7 @@
 
     <groupId>me.itzloghotxd</groupId>
     <artifactId>Gamemenu</artifactId>
-    <version>0.5.0</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
     <name>GamemenuPlugin</name>
@@ -32,7 +32,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.6.0</version>
+                <version>3.5.1</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -40,27 +40,7 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <artifactSet>
-                                <includes>
-                                    <include>de.tr7zw:item-nbt-api</include>
-                                </includes>
-                            </artifactSet>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
-                            <relocations>
-                                <relocation>
-                                    <pattern>de.tr7zw.changeme.nbtapi</pattern>
-                                    <shadedPattern>me.itzloghotxd.gamemenu.lib.nbt</shadedPattern>
-                                </relocation>
-                            </relocations>
-                            <filters>
-                                <filter>
-                                    <artifact>de.tr7zw:item-nbt-api</artifact>
-                                    <excludes>
-                                        <exclude>META-INF/**</exclude>
-                                        <exclude>LICENSE</exclude>
-                                    </excludes>
-                                </filter>
-                            </filters>
                         </configuration>
                     </execution>
                 </executions>
@@ -87,11 +67,6 @@
             <id>placeholderapi</id>
             <url>https://repo.extendedclip.com/releases/</url>
         </repository>
-        <repository>
-            <id>codemc-repo</id>
-            <url>https://repo.codemc.io/repository/maven-public/</url>
-            <layout>default</layout>
-        </repository>
     </repositories>
 
     <dependencies>
@@ -102,20 +77,10 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-shade-plugin</artifactId>
-            <version>3.6.0</version>
-        </dependency>
-        <dependency>
             <groupId>me.clip</groupId>
             <artifactId>placeholderapi</artifactId>
             <version>2.11.6</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>de.tr7zw</groupId>
-            <artifactId>item-nbt-api</artifactId>
-            <version>2.11.3</version>
         </dependency>
     </dependencies>
 </project>

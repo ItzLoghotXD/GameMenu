@@ -1,10 +1,7 @@
 package me.itzloghotxd.gamemenu.listener.hotbar;
 
 import me.itzloghotxd.gamemenu.GamemenuPlugin;
-import me.itzloghotxd.gamemenu.config.ConfigType;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.configuration.file.FileConfiguration;
+import me.itzloghotxd.gamemenu.utility.CustomItem;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -12,63 +9,43 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-
-import java.util.List;
 
 public class HotbarItem implements Listener {
 
-    private final ItemStack serverMenuItem;
-    private final int slot;
-
     public HotbarItem() {
-        FileConfiguration config = GamemenuPlugin.getPlugin().getConfigManager().getConfig(ConfigType.SETTINGS);
-        Material material = Material.matchMaterial(config.getString("server_menu_item.material", "NETHER_STAR"));
-        String name = config.getString("server_menu_item.display_name", "&aServer Menu &7(Right Click)");
-        List<String> lore = config.getStringList("server_menu_item.lore");
-
-        if (material != null) {
-            serverMenuItem = new ItemStack(material, 1);
-            ItemMeta meta = serverMenuItem.getItemMeta();
-
-            if (meta != null) {
-                meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', name));
-                lore.replaceAll(textToTranslate -> ChatColor.translateAlternateColorCodes('&', textToTranslate));
-                meta.setLore(lore);
-                serverMenuItem.setItemMeta(meta);
-            }
-        } else {
-            serverMenuItem = null;
-        }
-
-        int configuredSlot = config.getInt("server_menu_item.slot", 8);
-        slot = Math.min(Math.max(configuredSlot, 0), 8);
     }
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
+        Player player = event.getPlayer();
+        ItemStack serverMenuItem = GamemenuPlugin.getServerMenuItem();
+
         if (serverMenuItem != null) {
-            Player player = event.getPlayer();
-            player.getInventory().remove(serverMenuItem);
-            player.getInventory().setItem(slot, serverMenuItem);
+            player.getInventory().setItem(8, serverMenuItem);
         }
     }
 
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
+        Player player = event.getEntity();
+        ItemStack serverMenuItem = GamemenuPlugin.getServerMenuItem();
+
         if (serverMenuItem != null) {
-            Player player = event.getEntity();
-            event.getDrops().removeIf(drop -> drop.isSimilar(serverMenuItem));
-            GamemenuPlugin.getPlugin().getServer().getScheduler().runTaskLater(GamemenuPlugin.getPlugin(), () -> {
-                player.getInventory().setItem(slot, serverMenuItem);
-            }, 0L);
+            event.getDrops().removeIf(drop -> CustomItem.isCustomItem(drop, "hotbar_item", "server_menu_item"));
+            GamemenuPlugin.getPlugin().getServer().getScheduler().runTaskLater(
+                    GamemenuPlugin.getPlugin(),
+                    () -> player.getInventory().setItem(8, serverMenuItem),
+                    0L
+            );
         }
     }
 
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent event) {
+        Player player = event.getPlayer();
+        ItemStack serverMenuItem = GamemenuPlugin.getServerMenuItem();
+
         if (serverMenuItem != null) {
-            Player player = event.getPlayer();
             player.getInventory().remove(serverMenuItem);
         }
     }

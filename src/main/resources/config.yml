@@ -24,16 +24,12 @@
 #   like '&a' for green you can find all
 #   code here https://www.digminecraft.com/lists/color_list_pc.php
 
-# Should we allow player to swap items(server_menu_item excluded)
-disable_off_hand_swap: false
-
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 # | SERVER MENU ITEM SETTINGS                |
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 server_menu_item:
   material: NETHER_STAR   # The material which is use for this custom item. (you can find all item names here
   # https://github.com/ItzLoghotXD/GameMenu)
-  slot: 8   # Number of slot in which the item should be (it starts from 0 to 8)
   display_name: '&aServer Menu &7(Right Click)'   # The display name of this item
   lore:   # Lore(s) of this item
     - '&7View all of your Server'
@@ -62,9 +58,10 @@ menu:
         - ''
         - '&eClick to Report it!'
       commands:   # The list of commands which will be executed when the player will right/left click on it
-      # (It has a built-in command 'close' which will close the menu) but be careful because it will execute
-      # the command as console
-        - 'msg @p hi?'
+      # (It has a built-in command 'CLOSE' which will close the menu and if you put 'CONSOLE: ' in before
+      # any command it will execute it as console else player)
+        - 'CONSOLE: say replace this with actual command'
+        - 'CONSOLE: say or edit config.yml'
     Crafting_Table:
       material: CRAFTING_TABLE
       slot: 31
@@ -74,10 +71,11 @@ menu:
         - ''
         - '&eClick to open!'
       commands:
-        - 'msg @p hi?'
+        - 'CONSOLE: say replace this with actual command'
+        - 'CONSOLE: say or edit config.yml'
     CLOSE:
       material: BARRIER
       slot: 49
       display_name: '&4Close'
       commands:
-        - 'close'
+        - 'CLOSE'

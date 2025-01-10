@@ -3,6 +3,7 @@ package me.itzloghotxd.gamemenu;
 import me.itzloghotxd.gamemenu.commands.CommandHandler;
 import me.itzloghotxd.gamemenu.commands.CommandManager;
 import me.itzloghotxd.gamemenu.config.ConfigManager;
+import me.itzloghotxd.gamemenu.config.ConfigType;
 import me.itzloghotxd.gamemenu.inventory.InventoryListener;
 import me.itzloghotxd.gamemenu.inventory.InventoryPlayer;
 import me.itzloghotxd.gamemenu.listener.hotbar.HotbarClickEvent;
@@ -10,8 +11,12 @@ import me.itzloghotxd.gamemenu.listener.hotbar.HotbarItem;
 import me.itzloghotxd.gamemenu.listener.player.PlayerInteractionEvent;
 import me.itzloghotxd.gamemenu.listener.player.PlayerItemDropEvent;
 import me.itzloghotxd.gamemenu.listener.player.PlayerOffHandSwapEvent;
+import me.itzloghotxd.gamemenu.utility.CustomItem;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
@@ -22,6 +27,7 @@ public final class GamemenuPlugin extends JavaPlugin{
     private static GamemenuPlugin plugin;
     private ConfigManager configManager;
     private CommandManager commandManager;
+    private static ItemStack serverMenuItem;
 
     private static final HashMap<Player, InventoryPlayer> playerInventory = new HashMap<>();
 
@@ -53,6 +59,16 @@ public final class GamemenuPlugin extends JavaPlugin{
         if (this.getServer().getPluginManager().isPluginEnabled(this)) {
             configManager = new ConfigManager();
             configManager.loadFiles(this);
+
+            FileConfiguration config = configManager.getConfig(ConfigType.SETTINGS);
+            serverMenuItem = CustomItem.createCustomItem(Material.matchMaterial(config.getString("server_menu_item.material",
+                            "NETHER_STAR")),
+                    config.getString("server_menu_item.display_name"),
+                    config.getStringList("server_menu_item.lore"),
+                    "hotbar_item",
+                    "server_menu_item"
+                    );
+
             commandManager = new CommandManager();
             new CommandHandler(this);
             registerEvents();
@@ -91,6 +107,10 @@ public final class GamemenuPlugin extends JavaPlugin{
 
     public CommandManager getCommandManager() {
         return this.commandManager;
+    }
+
+    public static ItemStack getServerMenuItem() {
+        return serverMenuItem;
     }
 
     public static InventoryPlayer getInventoryPlayer(Player player) {

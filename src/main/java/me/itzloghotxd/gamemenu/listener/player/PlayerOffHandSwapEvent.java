@@ -1,9 +1,6 @@
 package me.itzloghotxd.gamemenu.listener.player;
 
-import me.itzloghotxd.gamemenu.GamemenuPlugin;
-import me.itzloghotxd.gamemenu.config.ConfigType;
-import org.bukkit.Material;
-import org.bukkit.configuration.file.FileConfiguration;
+import me.itzloghotxd.gamemenu.utility.CustomItem;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerSwapHandItemsEvent;
@@ -16,22 +13,9 @@ public class PlayerOffHandSwapEvent implements Listener {
 
     @EventHandler
     public void onPlayerOffHandSwap(PlayerSwapHandItemsEvent event) {
-        FileConfiguration config = GamemenuPlugin.getPlugin().getConfigManager().getConfig(ConfigType.SETTINGS);
-        String item = config.getString("server_menu_item.material", "NETHER_STAR");
-        boolean offHandSwap = config.getBoolean("disable_off_hand_swap", false);
+        ItemStack swappedItem = event.getOffHandItem();
 
-        if (offHandSwap) {
-            event.setCancelled(true);
-        }
-
-        ItemStack itemStack = event.getOffHandItem();
-
-        Material material = Material.getMaterial(item);
-        if (material == null) {
-            return;
-        }
-
-        if (itemStack != null && itemStack.getType() == material) {
+        if (CustomItem.isCustomItem(swappedItem, "hotbar_item", "server_menu_item")) {
             event.setCancelled(true);
         }
     }

@@ -26,7 +26,7 @@ public class ConfigHandler {
      */
     public ConfigHandler(JavaPlugin plugin, String name) {
         this.plugin = plugin;
-        this.name = name + ".yml"; // Append .yml extension to the name
+        this.name = name + "Materials.txt"; // Append Materials.txt extension to the name
         this.file = new File(plugin.getDataFolder(), this.name); // Locate the file in the plugin's data folder
         this.configuration = new YamlConfiguration(); // Initialize the configuration object
     }

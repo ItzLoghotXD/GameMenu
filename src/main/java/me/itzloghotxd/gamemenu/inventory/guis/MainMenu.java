@@ -79,7 +79,12 @@ public class MainMenu extends AbstractInventory {
                 if (command.equalsIgnoreCase("close")) {
                     player.closeInventory();
                 } else {
-                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
+                    if (command.toUpperCase().startsWith("CONSOLE:")) {
+                        String consoleCommand = command.substring("CONSOLE:".length()).trim();
+                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), consoleCommand);
+                    } else {
+                        Bukkit.dispatchCommand(player, command);
+                    }
                 }
             }
         }

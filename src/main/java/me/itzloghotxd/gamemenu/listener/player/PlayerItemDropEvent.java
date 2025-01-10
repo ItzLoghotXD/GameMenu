@@ -1,11 +1,6 @@
 package me.itzloghotxd.gamemenu.listener.player;
 
-import me.itzloghotxd.gamemenu.GamemenuPlugin;
-import me.itzloghotxd.gamemenu.config.ConfigType;
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.Player;
+import me.itzloghotxd.gamemenu.utility.CustomItem;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerDropItemEvent;
@@ -18,18 +13,9 @@ public class PlayerItemDropEvent implements Listener {
 
     @EventHandler
     public void onPlayerDropItem(PlayerDropItemEvent event) {
-        FileConfiguration config = GamemenuPlugin.getPlugin().getConfigManager().getConfig(ConfigType.SETTINGS);
-        String item = config.getString("server_menu_item.material", "NETHER_STAR");
-
         ItemStack droppedItem = event.getItemDrop().getItemStack();
 
-        Material material = Material.getMaterial(item);
-        if (material == null) {
-            return;
-        }
-
-        if (droppedItem.getType() == material) {
-            event.getPlayer().performCommand("gm menu");;
+        if (CustomItem.isCustomItem(droppedItem, "hotbar_item", "server_menu_item")) {
             event.setCancelled(true);
         }
     }

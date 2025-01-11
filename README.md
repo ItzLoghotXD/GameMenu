@@ -81,7 +81,7 @@ The `GameMenu` plugin comes with a default configuration file that can be custom
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 server_menu_item:
    material: NETHER_STAR   # The material which is use for this custom item. (you can find all item names here
-   # https://github.com/ItzLoghotXD/GameMenu)
+   # https://raw.githubusercontent.com/ItzLoghotXD/GameMenu/main/Materials.txt)
    display_name: '&aServer Menu &7(Right Click)'   # The display name of this item
    lore:   # Lore(s) of this item
       - '&7View all of your Server'

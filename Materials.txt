@@ -1,4 +1,5 @@
 # Visit https://jd.papermc.io/paper/1.21.4/org/bukkit/Material.html for more ITEMS!
+# Or you can search "Materials enum papermc java doc" on any search engine (google, bing, etc)
 
 AIR
 STONE

@@ -80,57 +80,57 @@ The `GameMenu` plugin comes with a default configuration file that can be custom
 # | SERVER MENU ITEM SETTINGS                |
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 server_menu_item:
-   material: NETHER_STAR   # The material which is use for this custom item. (you can find all item names here
-   # https://raw.githubusercontent.com/ItzLoghotXD/GameMenu/main/Materials.txt)
-   display_name: '&aServer Menu &7(Right Click)'   # The display name of this item
-   lore:   # Lore(s) of this item
-      - '&7View all of your Server'
-      - '&7progress, including your Skills,'
-      - '&7Collections, Recipes, and more!'
-      - ''
-      - '&eClick to open'
+  material: NETHER_STAR   # The material which is use for this custom item. (you can find all item names here
+  # https://raw.githubusercontent.com/ItzLoghotXD/GameMenu/main/Materials.txt)
+  display_name: '&aServer Menu &7(Right Click)'   # The display name of this item
+  lore:   # Lore(s) of this item
+     - '&7View all of your Server'
+     - '&7progress, including your Skills,'
+     - '&7Collections, Recipes, and more!'
+     - ''
+     - '&eClick to open'
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 # | SERVER MENU/GUI SETTINGS                 |
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 menu:
-   slots: 54   # Total number of slots in the gui (if you enter any number which is not divisible by 9
-   # it will auto adjust it)
-   title: '&aServer Menu'   # The title of this menu
-   items:   # You can set items here which will be in the menu
-      # Some example items
-      Report_Island_Name:
-         material: ANVIL   # The material which will be displayed in the menu for this item
-         slot: 8   # The number of slot in which the item will be
-         display_name: '&aReport Island Name'   # The display name of this item
-         lore:   # Lore(s) of this item
-            - '&7You can report this island'
-            - '&7if you think it has an'
-            - '&7in appropriate name.'
-            - ''
-            - '&eClick to Report it!'
-         commands:   # The list of commands which will be executed when the player will right/left click on it
-            # (It has a built-in command 'CLOSE' which will close the menu and if you put 'CONSOLE: ' in before
-            # any command it will execute it as console else player)
-            - 'CONSOLE: say replace this with actual command'
-            - 'CONSOLE: say or edit config.yml'
-      Crafting_Table:
-         material: CRAFTING_TABLE
-         slot: 31
-         display_name: '&aCrafting Table'
-         lore:
-            - '&7Opens the Crafting Grid.'
-            - ''
-            - '&eClick to open!'
-         commands:
-            - 'CONSOLE: say replace this with actual command'
-            - 'CONSOLE: say or edit config.yml'
-      CLOSE:
-         material: BARRIER
-         slot: 49
-         display_name: '&4Close'
-         commands:
-            - 'CLOSE'
+  slots: 54   # Total number of slots in the gui (if you enter any number which is not divisible by 9
+  # it will auto adjust it)
+  title: '&aServer Menu'   # The title of this menu
+  items:   # You can set items here which will be in the menu
+    # Some example items
+    Report_Island_Name:
+      material: ANVIL   # The material which will be displayed in the menu for this item
+      slot: 8   # The number of slot in which the item will be
+      display_name: '&aReport Island Name'   # The display name of this item
+      lore:   # Lore(s) of this item
+          - '&7You can report this island'
+          - '&7if you think it has an'
+          - '&7in appropriate name.'
+          - ''
+          - '&eClick to Report it!'
+      commands:   # The list of commands which will be executed when the player will right/left click on it
+          # (It has a built-in command 'CLOSE' which will close the menu and if you put 'CONSOLE: ' in before
+          # any command it will execute it as console else player)
+          - 'CONSOLE: say replace this with actual command'
+          - 'CONSOLE: say or edit config.yml'
+    Crafting_Table:
+      material: CRAFTING_TABLE
+      slot: 31
+      display_name: '&aCrafting Table'
+      lore:
+          - '&7Opens the Crafting Grid.'
+          - ''
+          - '&eClick to open!'
+      commands:
+          - 'CONSOLE: say replace this with actual command'
+          - 'CONSOLE: say or edit config.yml'
+    CLOSE:
+      material: BARRIER
+      slot: 49
+      display_name: '&4Close'
+      commands:
+          - 'CLOSE'
 ```
 
 Save the changes and reload the plugin by typing `/gamemenu reload` in the console to apply the new configuration.

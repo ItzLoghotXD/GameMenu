@@ -19,13 +19,12 @@ public class InventoryListener implements Listener {
         Player player = (Player) event.getWhoClicked();
         InventoryHolder holder = event.getClickedInventory().getHolder();
 
-        if (player.getOpenInventory().getTopInventory().getHolder() instanceof AbstractInventory) {
-            event.setCancelled(true);
-            return;
-        }
-
         if (holder instanceof AbstractInventory inventory) {
             inventory.handleInventory(event);
+            event.setCancelled(true);
+        }
+
+        if (player.getOpenInventory().getTopInventory().getHolder() instanceof AbstractInventory) {
             event.setCancelled(true);
         }
 

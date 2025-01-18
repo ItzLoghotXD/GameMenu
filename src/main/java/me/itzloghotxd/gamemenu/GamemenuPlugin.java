@@ -12,6 +12,7 @@ import me.itzloghotxd.gamemenu.listener.player.PlayerInteractionEvent;
 import me.itzloghotxd.gamemenu.listener.player.PlayerItemDropEvent;
 import me.itzloghotxd.gamemenu.listener.player.PlayerOffHandSwapEvent;
 import me.itzloghotxd.gamemenu.utility.CustomItem;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -23,6 +24,8 @@ import java.util.HashMap;
 import java.util.logging.Level;
 
 public final class GamemenuPlugin extends JavaPlugin{
+
+    private static final int BSTATS_ID = 24501;
 
     private static GamemenuPlugin plugin;
     private ConfigManager configManager;
@@ -57,6 +60,9 @@ public final class GamemenuPlugin extends JavaPlugin{
         }
 
         if (this.getServer().getPluginManager().isPluginEnabled(this)) {
+            new Metrics(this, BSTATS_ID);
+
+
             configManager = new ConfigManager();
             configManager.loadFiles(this);
 
@@ -67,7 +73,7 @@ public final class GamemenuPlugin extends JavaPlugin{
                     config.getStringList("server_menu_item.lore"),
                     "hotbar_item",
                     "server_menu_item"
-                    );
+            );
 
             commandManager = new CommandManager();
             new CommandHandler(this);

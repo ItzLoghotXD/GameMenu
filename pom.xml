@@ -6,7 +6,7 @@
 
     <groupId>me.itzloghotxd</groupId>
     <artifactId>Gamemenu</artifactId>
-    <version>1.0</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
 
     <name>GamemenuPlugin</name>
@@ -40,7 +40,26 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
+                            <artifactSet>
+                                <includes>
+                                    <include>org.bstats</include>
+                                </includes>
+                            </artifactSet>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
+                            <relocations>
+                                <relocation>
+                                    <pattern>org.bstats</pattern>
+                                    <shadedPattern>me.itzloghotxd.gamemenu.libs.bstats</shadedPattern>
+                                </relocation>
+                            </relocations>
+                            <filters>
+                                <filter>
+                                    <artifact>org.bstats</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/**</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
                         </configuration>
                     </execution>
                 </executions>
@@ -75,6 +94,12 @@
             <artifactId>paper-api</artifactId>
             <version>1.16.5-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.bstats</groupId>
+            <artifactId>bstats-bukkit</artifactId>
+            <version>3.0.2</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>me.clip</groupId>

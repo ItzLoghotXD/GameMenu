@@ -60,8 +60,7 @@ menu:
       commands:   # The list of commands which will be executed when the player will right/left click on it
       # (It has a built-in command 'CLOSE' which will close the menu and if you put 'CONSOLE: ' in before
       # any command it will execute it as console else player)
-        - 'CONSOLE: say replace this with actual command'
-        - 'CONSOLE: say or edit config.yml'
+        - 'CONSOLE: say edit the config.yml file in the plugin/GameMenu folder'
     Crafting_Table:
       material: CRAFTING_TABLE
       slot: 31
@@ -71,8 +70,7 @@ menu:
         - ''
         - '&eClick to open!'
       commands:
-        - 'CONSOLE: say replace this with actual command'
-        - 'CONSOLE: say or edit config.yml'
+        - 'CONSOLE: say edit the config.yml file in the plugin/GameMenu folder'
     CLOSE:
       material: BARRIER
       slot: 49

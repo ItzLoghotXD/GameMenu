@@ -1,7 +1,7 @@
 package me.itzloghotxd.gamemenu.listener.hotbar;
 
 import me.itzloghotxd.gamemenu.GamemenuPlugin;
-import me.itzloghotxd.gamemenu.utility.CustomItem;
+import me.itzloghotxd.gamemenu.utility.item.ItemHandler;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,7 +18,7 @@ public class HotbarItem implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        ItemStack serverMenuItem = GamemenuPlugin.getServerMenuItem();
+        ItemStack serverMenuItem = GamemenuPlugin.getPlugin().getItemManager().getItem("SERVER_MENU_ITEM");
 
         if (serverMenuItem != null) {
             player.getInventory().setItem(8, serverMenuItem);
@@ -28,14 +28,18 @@ public class HotbarItem implements Listener {
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
         Player player = event.getEntity();
-        ItemStack serverMenuItem = GamemenuPlugin.getServerMenuItem();
+        ItemStack serverMenuItem = GamemenuPlugin.getPlugin().getItemManager().getItem("SERVER_MENU_ITEM");
 
         if (serverMenuItem != null) {
-            event.getDrops().removeIf(drop -> CustomItem.isCustomItem(drop, "hotbar_item", "server_menu_item"));
+            event.getDrops().removeIf(drop -> ItemHandler.isCustomItem(drop, "hotbar_item", "server_menu_item"));
             GamemenuPlugin.getPlugin().getServer().getScheduler().runTaskLater(
                     GamemenuPlugin.getPlugin(),
-                    () -> player.getInventory().setItem(8, serverMenuItem),
-                    0L
+                    () -> {
+                        if (player.isOnline()) {
+                            player.getInventory().setItem(8, serverMenuItem);
+                        }
+                    },
+                    1L
             );
         }
     }
@@ -43,7 +47,7 @@ public class HotbarItem implements Listener {
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent event) {
         Player player = event.getPlayer();
-        ItemStack serverMenuItem = GamemenuPlugin.getServerMenuItem();
+        ItemStack serverMenuItem = GamemenuPlugin.getPlugin().getItemManager().getItem("SERVER_MENU_ITEM");
 
         if (serverMenuItem != null) {
             player.getInventory().remove(serverMenuItem);

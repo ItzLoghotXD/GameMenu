@@ -1,4 +1,4 @@
-package me.itzloghotxd.gamemenu.utility;
+package me.itzloghotxd.gamemenu.utility.item;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 import me.itzloghotxd.gamemenu.GamemenuPlugin;
 
-public class CustomItem {
+public class ItemHandler {
 
     private static final GamemenuPlugin PLUGIN = GamemenuPlugin.getPlugin();
 

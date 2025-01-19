@@ -3,7 +3,6 @@ package me.itzloghotxd.gamemenu;
 import me.itzloghotxd.gamemenu.commands.CommandHandler;
 import me.itzloghotxd.gamemenu.commands.CommandManager;
 import me.itzloghotxd.gamemenu.config.ConfigManager;
-import me.itzloghotxd.gamemenu.config.ConfigType;
 import me.itzloghotxd.gamemenu.inventory.InventoryListener;
 import me.itzloghotxd.gamemenu.inventory.InventoryPlayer;
 import me.itzloghotxd.gamemenu.listener.hotbar.HotbarClickEvent;
@@ -11,13 +10,10 @@ import me.itzloghotxd.gamemenu.listener.hotbar.HotbarItem;
 import me.itzloghotxd.gamemenu.listener.player.PlayerInteractionEvent;
 import me.itzloghotxd.gamemenu.listener.player.PlayerItemDropEvent;
 import me.itzloghotxd.gamemenu.listener.player.PlayerOffHandSwapEvent;
-import me.itzloghotxd.gamemenu.utility.CustomItem;
+import me.itzloghotxd.gamemenu.utility.item.ItemManager;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
@@ -30,7 +26,7 @@ public final class GamemenuPlugin extends JavaPlugin{
     private static GamemenuPlugin plugin;
     private ConfigManager configManager;
     private CommandManager commandManager;
-    private static ItemStack serverMenuItem;
+    private ItemManager itemManager;
 
     private static final HashMap<Player, InventoryPlayer> playerInventory = new HashMap<>();
 
@@ -62,22 +58,17 @@ public final class GamemenuPlugin extends JavaPlugin{
         if (this.getServer().getPluginManager().isPluginEnabled(this)) {
             new Metrics(this, BSTATS_ID);
 
-
             configManager = new ConfigManager();
             configManager.loadFiles(this);
 
-            FileConfiguration config = configManager.getConfig(ConfigType.SETTINGS);
-            serverMenuItem = CustomItem.createCustomItem(Material.matchMaterial(config.getString("server_menu_item.material",
-                            "NETHER_STAR")),
-                    config.getString("server_menu_item.display_name"),
-                    config.getStringList("server_menu_item.lore"),
-                    "hotbar_item",
-                    "server_menu_item"
-            );
-
             commandManager = new CommandManager();
             new CommandHandler(this);
+
+            itemManager = new ItemManager();
+            itemManager.loadItems();
+
             registerEvents();
+
             getLogger().log(Level.INFO, "");
             getLogger().log(Level.INFO, "Successfully loaded in " + (System.currentTimeMillis() - start) + "ms!");
         }
@@ -91,6 +82,7 @@ public final class GamemenuPlugin extends JavaPlugin{
     public void onReload() {
         long start = System.currentTimeMillis();
         configManager.reloadFiles();
+        itemManager.reloadItems();
         getLogger().log(Level.INFO, "Successfully reloaded in " + (System.currentTimeMillis() - start) + "ms!");
     }
 
@@ -115,8 +107,8 @@ public final class GamemenuPlugin extends JavaPlugin{
         return this.commandManager;
     }
 
-    public static ItemStack getServerMenuItem() {
-        return serverMenuItem;
+    public ItemManager getItemManager() {
+        return itemManager;
     }
 
     public static InventoryPlayer getInventoryPlayer(Player player) {

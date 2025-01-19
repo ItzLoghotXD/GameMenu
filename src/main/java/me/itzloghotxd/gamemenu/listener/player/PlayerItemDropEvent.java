@@ -1,6 +1,6 @@
 package me.itzloghotxd.gamemenu.listener.player;
 
-import me.itzloghotxd.gamemenu.utility.CustomItem;
+import me.itzloghotxd.gamemenu.utility.item.ItemHandler;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerDropItemEvent;
@@ -15,7 +15,7 @@ public class PlayerItemDropEvent implements Listener {
     public void onPlayerDropItem(PlayerDropItemEvent event) {
         ItemStack droppedItem = event.getItemDrop().getItemStack();
 
-        if (CustomItem.isCustomItem(droppedItem, "hotbar_item", "server_menu_item")) {
+        if (ItemHandler.isCustomItem(droppedItem, "hotbar_item", "server_menu_item")) {
             event.setCancelled(true);
         }
     }

@@ -1,6 +1,6 @@
 package me.itzloghotxd.gamemenu.listener.hotbar;
 
-import me.itzloghotxd.gamemenu.utility.CustomItem;
+import me.itzloghotxd.gamemenu.utility.item.ItemHandler;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,7 +15,7 @@ public class HotbarClickEvent implements Listener {
         if (event.getSlot() == 8) {
             ItemStack currentItem = event.getCurrentItem();
 
-            if (CustomItem.isCustomItem(currentItem, "hotbar_item", "server_menu_item")) {
+            if (ItemHandler.isCustomItem(currentItem, "hotbar_item", "server_menu_item")) {
                 player.performCommand("gm menu");
                 event.setCancelled(true);
             }

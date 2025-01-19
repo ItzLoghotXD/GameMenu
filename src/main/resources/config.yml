@@ -43,7 +43,7 @@ server_menu_item:
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 menu:
   slots: 54   # Total number of slots in the gui (if you enter any number which is not divisible by 9
-    # it will auto adjust it)
+    # it will auto adjust it. minimum valid number is 9 and maximum is 54)
   title: '&aServer Menu'   # The title of this menu
   items:   # You can set items here which will be in the menu
     # Some example items

@@ -1,6 +1,6 @@
 package me.itzloghotxd.gamemenu.listener.player;
 
-import me.itzloghotxd.gamemenu.utility.CustomItem;
+import me.itzloghotxd.gamemenu.utility.item.ItemHandler;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -18,7 +18,7 @@ public class PlayerInteractionEvent implements Listener {
 
         ItemStack itemInMainHand = event.getPlayer().getInventory().getItemInMainHand();
 
-        if (CustomItem.isCustomItem(itemInMainHand, "hotbar_item", "server_menu_item")) {
+        if (ItemHandler.isCustomItem(itemInMainHand, "hotbar_item", "server_menu_item")) {
             event.getPlayer().performCommand("gm menu");
             event.setCancelled(true);
         }

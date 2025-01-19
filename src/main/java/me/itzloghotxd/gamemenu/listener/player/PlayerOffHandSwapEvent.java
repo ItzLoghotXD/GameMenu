@@ -1,6 +1,6 @@
 package me.itzloghotxd.gamemenu.listener.player;
 
-import me.itzloghotxd.gamemenu.utility.CustomItem;
+import me.itzloghotxd.gamemenu.utility.item.ItemHandler;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerSwapHandItemsEvent;
@@ -15,7 +15,7 @@ public class PlayerOffHandSwapEvent implements Listener {
     public void onPlayerOffHandSwap(PlayerSwapHandItemsEvent event) {
         ItemStack swappedItem = event.getOffHandItem();
 
-        if (CustomItem.isCustomItem(swappedItem, "hotbar_item", "server_menu_item")) {
+        if (ItemHandler.isCustomItem(swappedItem, "hotbar_item", "server_menu_item")) {
             event.setCancelled(true);
         }
     }

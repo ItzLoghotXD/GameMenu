@@ -21,7 +21,6 @@ public class InventoryListener implements Listener {
 
         if (holder instanceof AbstractInventory inventory) {
             inventory.handleInventory(event);
-            event.setCancelled(true);
         }
 
         if (player.getOpenInventory().getTopInventory().getHolder() instanceof AbstractInventory) {

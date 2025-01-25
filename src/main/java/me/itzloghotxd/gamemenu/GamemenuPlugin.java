@@ -43,18 +43,6 @@ public final class GamemenuPlugin extends JavaPlugin{
         getLogger().log(Level.INFO, "https://github.com/ItzLoghotXD/GameMenu");
         getLogger().log(Level.INFO, "");
 
-        try {
-            Class.forName("com.destroystokyo.paper.PaperConfig");
-        } catch (ClassNotFoundException var4) {
-            getLogger().severe("============= PAPER NOT DETECTED =============");
-            getLogger().severe("Gamemenu requires Paper to run, you can download");
-            getLogger().severe("Paper here: https://papermc.io/downloads/all.");
-            getLogger().severe("The plugin will now disable.");
-            getLogger().severe("============= PAPER NOT DETECTED =============");
-            getPluginLoader().disablePlugin(this);
-            return;
-        }
-
         if (this.getServer().getPluginManager().isPluginEnabled(this)) {
             new Metrics(this, BSTATS_ID);
 

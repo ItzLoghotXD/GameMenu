@@ -50,6 +50,9 @@ public class MainMenu extends AbstractInventory {
     }
     @Override
     public void handleInventory(InventoryClickEvent event) {
+
+        event.setCancelled(true);
+
         ItemStack clickedItem = event.getCurrentItem();
         if (clickedItem == null || !clickedItem.hasItemMeta()) return;
 
@@ -59,21 +62,22 @@ public class MainMenu extends AbstractInventory {
         String displayName = meta.getDisplayName();
         Material material = clickedItem.getType();
 
-        String path = null;
+        String item = null;
 
         for (String entry : Objects.requireNonNull(config.getConfigurationSection("menu.items")).getKeys(false)) {
             String itemDisplayName = ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(config.getString("menu.items." + entry + ".display_name")));
             Material itemMaterial = Material.matchMaterial(Objects.requireNonNull(config.getString("menu.items." + entry + ".material")));
+            int slot = config.getInt("menu.items." + entry + ".slot");
 
-            if (itemMaterial != null && itemMaterial == material && itemDisplayName.equals(displayName)) {
-                path = "menu.items." + entry;
+            if (itemMaterial != null && itemMaterial == material && itemDisplayName.equals(displayName) && slot == event.getRawSlot()) {
+                item = "menu.items." + entry;
                 break;
             }
         }
 
-        if (path != null) {
+        if (item != null) {
             Player player = (Player) event.getWhoClicked();
-            List<String> commands = config.getStringList(path + ".commands");
+            List<String> commands = config.getStringList(item + ".commands");
             for (String command : commands) {
                 command = PlaceholderUtil.setPlaceholders(command, player);
                 if (command.equalsIgnoreCase("close")) {

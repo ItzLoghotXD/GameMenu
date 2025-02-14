@@ -35,7 +35,7 @@ To install the `GameMenu` plugin, follow these steps:
 
 2. **Add the plugin to your server**:
     - Place the downloaded JAR file into the `plugins` directory of your Minecraft server.<br>
-[Note - This plugin will not work on any spigot server.]
+      [Note - This plugin will work on both spigot and paper server (may work on other also)]
 
 3. **Start the server**: Simply Start your Minecraft server to load the plugin.
 
@@ -84,53 +84,63 @@ server_menu_item:
   # https://raw.githubusercontent.com/ItzLoghotXD/GameMenu/main/Materials.txt)
   display_name: '&aServer Menu &7(Right Click)'   # The display name of this item
   lore:   # Lore(s) of this item
-     - '&7View all of your Server'
-     - '&7progress, including your Skills,'
-     - '&7Collections, Recipes, and more!'
-     - ''
-     - '&eClick to open'
+    - '&7View all of your Server'
+    - '&7progress, including your Skills,'
+    - '&7Collections, Recipes, and more!'
+    - ''
+    - '&eClick to open'
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 # | SERVER MENU/GUI SETTINGS                 |
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 menu:
   slots: 54   # Total number of slots in the gui (if you enter any number which is not divisible by 9
-  # it will auto adjust it)
+  # it will auto adjust it. minimum valid number is 9 and maximum is 54)
   title: '&aServer Menu'   # The title of this menu
   items:   # You can set items here which will be in the menu
     # Some example items
     Report_Island_Name:
       material: ANVIL   # The material which will be displayed in the menu for this item
       slot: 8   # The number of slot in which the item will be
+      amount: 1   # The Amount of items in a slot
+      glow: false   # Whether the item glow or not
       display_name: '&aReport Island Name'   # The display name of this item
       lore:   # Lore(s) of this item
-          - '&7You can report this island'
-          - '&7if you think it has an'
-          - '&7in appropriate name.'
-          - ''
-          - '&eClick to Report it!'
+        - '&7You can report this island'
+        - '&7if you think it has an'
+        - '&7in appropriate name.'
+        - ''
+        - '&eClick to Report it!'
       commands:   # The list of commands which will be executed when the player will right/left click on it
-          # (It has a built-in command 'CLOSE' which will close the menu and if you put 'CONSOLE: ' in before
-          # any command it will execute it as console else player)
-          - 'CONSOLE: say replace this with actual command'
-          - 'CONSOLE: say or edit config.yml'
+        # (It has a built-in command 'CLOSE' which will close the menu and if you put 'CONSOLE: ' in before
+        # any command it will execute it as console else player)
+        - 'CONSOLE: say edit the config.yml file in the plugin/GameMenu folder'
+        - 'CONSOLE: say Visit me at paper hangar: https://hangar.papermc.io/ItzLoghotXD/GameMenu'
+        - 'CONSOLE: say Visit me at modrinth: https://modrinth.com/plugin/game-menu'
+        - 'CONSOLE: say Visit me at spigot: https://www.spigotmc.org/resources/gamemenu.122426'
+        - 'CONSOLE: say or found any issue then report it here: https://github.com/ItzLoghotXD/GameMenu/issues'
     Crafting_Table:
       material: CRAFTING_TABLE
       slot: 31
+      amount: 1
+      glow: false
       display_name: '&aCrafting Table'
       lore:
-          - '&7Opens the Crafting Grid.'
-          - ''
-          - '&eClick to open!'
+        - '&7Opens the Crafting Grid.'
+        - ''
+        - '&eClick to open!'
       commands:
-          - 'CONSOLE: say replace this with actual command'
-          - 'CONSOLE: say or edit config.yml'
+        - 'CONSOLE: say edit the config.yml file in the plugin/GameMenu folder'
+        - 'CONSOLE: say Visit me at paper hangar: https://hangar.papermc.io/ItzLoghotXD/GameMenu'
+        - 'CONSOLE: say Visit me at modrinth: https://modrinth.com/plugin/game-menu'
+        - 'CONSOLE: say Visit me at spigot: https://www.spigotmc.org/resources/gamemenu.122426'
+        - 'CONSOLE: say or found any issue then report it here: https://github.com/ItzLoghotXD/GameMenu/issues'
     CLOSE:
       material: BARRIER
       slot: 49
       display_name: '&4Close'
       commands:
-          - 'CLOSE'
+        - 'CLOSE'
 ```
 
 Save the changes and reload the plugin by typing `/gamemenu reload` in the console to apply the new configuration.
@@ -143,8 +153,8 @@ Once the `GameMenu` plugin is installed and configured, all players can use the 
 
 The `GameMenu` plugin provides the following commands:
 * `/gamemenu` - The default command.
-  * aliases - `/gm`
-  * usage - `/gamemenu <subcommand>`
+    * aliases - `/gm`
+    * usage - `/gamemenu <subcommand>`
 * `/gamemenu help` - Shows the usage of every command.
 * `gamemenu menu` - Opens the `Main menu`.
 * `gamemenu reload` - Reloads the plugin
@@ -161,10 +171,10 @@ The `GameMenu` plugin uses the following permissions:
 ## Contributing
 Contributions to the `GameMenu` plugin are welcome! If you would like to contribute, please follow these steps:
 
-1. Fork the repository. 
-2. Create a new branch for your feature or bug fix. 
-3. Make your changes and commit them with descriptive messages. 
-4. Push your changes to your forked repository. 
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them with descriptive messages.
+4. Push your changes to your forked repository.
 5. Create a pull request to the main repository.
 
 Please ensure that your code follows the project's coding standards and includes appropriate tests.
@@ -183,4 +193,3 @@ I work on this Project with the little amount of free time that I have. Please f
 * Ethereum (ETH) Address: 0xE842deFED402339F77637e95cD09d7b3820630ac
 * Solana (SOL) Address: HcXwLbebt7mvjc69we8jnQtBGSAcB9U5rnbAMQeRAdSD
 * Dogecoin (DOGE) Address: DKgToq8vnBHTgik3iQnm3r3r4mnqvXy4Um
-

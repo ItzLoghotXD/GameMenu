@@ -9,8 +9,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -18,6 +20,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class MainMenu extends AbstractInventory {
+    private Player player;
+
     public MainMenu(InventoryPlayer inventoryPlayer) {
         super(inventoryPlayer);
     }
@@ -76,7 +80,7 @@ public class MainMenu extends AbstractInventory {
         }
 
         if (item != null) {
-            Player player = (Player) event.getWhoClicked();
+            player = (Player) event.getWhoClicked();
             List<String> commands = config.getStringList(item + ".commands");
             for (String command : commands) {
                 command = PlaceholderUtil.setPlaceholders(command, player);
@@ -98,6 +102,8 @@ public class MainMenu extends AbstractInventory {
     public void setItems() {
         for (String entry : Objects.requireNonNull(config.getConfigurationSection("menu.items")).getKeys(false)){
             int slot = config.getInt("menu.items." + entry + ".slot");
+            int amount = config.getInt("menu.items." + entry + ".amount", 1);
+            boolean glow = config.getBoolean("menu.items." + entry + ".glow", false);
             Material material = Material.matchMaterial(config.getString("menu.items." + entry + ".material", "BARRIER"));
             String name = config.getString("menu.items." + entry + ".display_name");
             List<String> lore = config.getStringList("menu.items." + entry + ".lore");
@@ -108,13 +114,22 @@ public class MainMenu extends AbstractInventory {
 
                 if (meta != null) {
                     if (name != null) {
-                        meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', name));
+                        meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', PlaceholderUtil.setPlaceholders(name, player)));
                     }
 
-                    lore.replaceAll(textToTranslate -> ChatColor.translateAlternateColorCodes('&', textToTranslate));
+                    lore.replaceAll(textToTranslate -> ChatColor.translateAlternateColorCodes('&', PlaceholderUtil.setPlaceholders(textToTranslate, player)));
                     meta.setLore(lore);
+                    if (glow) {
+                        meta.addEnchant(Enchantment.BINDING_CURSE, 1, false);
+                        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                    }
 
                     item.setItemMeta(meta);
+                    if (amount >= 64) {
+                        item.setAmount(64);
+                    } else {
+                        item.setAmount(amount);
+                    }
                 }
 
                 inventory.setItem(slot, item);

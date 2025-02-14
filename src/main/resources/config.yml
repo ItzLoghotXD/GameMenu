@@ -50,6 +50,8 @@ menu:
     Report_Island_Name:
       material: ANVIL   # The material which will be displayed in the menu for this item
       slot: 8   # The number of slot in which the item will be
+      amount: 1   # The Amount of items in a slot
+      glow: false   # Whether the item glow or not
       display_name: '&aReport Island Name'   # The display name of this item
       lore:   # Lore(s) of this item
         - '&7You can report this island'
@@ -61,9 +63,15 @@ menu:
       # (It has a built-in command 'CLOSE' which will close the menu and if you put 'CONSOLE: ' in before
       # any command it will execute it as console else player)
         - 'CONSOLE: say edit the config.yml file in the plugin/GameMenu folder'
+        - 'CONSOLE: say Visit me at paper hangar: https://hangar.papermc.io/ItzLoghotXD/GameMenu'
+        - 'CONSOLE: say Visit me at modrinth: https://modrinth.com/plugin/game-menu'
+        - 'CONSOLE: say Visit me at spigot: https://www.spigotmc.org/resources/gamemenu.122426'
+        - 'CONSOLE: say or found any issue then report it here: https://github.com/ItzLoghotXD/GameMenu/issues'
     Crafting_Table:
       material: CRAFTING_TABLE
       slot: 31
+      amount: 1
+      glow: false
       display_name: '&aCrafting Table'
       lore:
         - '&7Opens the Crafting Grid.'
@@ -71,6 +79,10 @@ menu:
         - '&eClick to open!'
       commands:
         - 'CONSOLE: say edit the config.yml file in the plugin/GameMenu folder'
+        - 'CONSOLE: say Visit me at paper hangar: https://hangar.papermc.io/ItzLoghotXD/GameMenu'
+        - 'CONSOLE: say Visit me at modrinth: https://modrinth.com/plugin/game-menu'
+        - 'CONSOLE: say Visit me at spigot: https://www.spigotmc.org/resources/gamemenu.122426'
+        - 'CONSOLE: say or found any issue then report it here: https://github.com/ItzLoghotXD/GameMenu/issues'
     CLOSE:
       material: BARRIER
       slot: 49

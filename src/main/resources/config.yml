@@ -32,9 +32,10 @@ server_menu_item:
   # https://raw.githubusercontent.com/ItzLoghotXD/GameMenu/main/Materials.txt)
   display_name: '&aServer Menu &7(Right Click)'   # The display name of this item
   lore:   # Lore(s) of this item
-    - '&7View all of your Server'
-    - '&7progress, including your Skills,'
-    - '&7Collections, Recipes, and more!'
+    - '&7This will open a GUI.'
+    - '&7You can see items there'
+    - '&7and interact with them!'
+    - '&7edit this in config.yml'
     - ''
     - '&eClick to open'
 
@@ -42,39 +43,39 @@ server_menu_item:
 # | SERVER MENU/GUI SETTINGS                 |
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 menu:
-  slots: 54   # Total number of slots in the gui (if you enter any number which is not divisible by 9
+  slots: 9   # Total number of slots in the gui (if you enter any number which is not divisible by 9
     # it will auto adjust it. minimum valid number is 9 and maximum is 54)
-  title: '&aServer Menu'   # The title of this menu
+  title: '&6Server Menu'   # The title of this menu
   items:   # You can set items here which will be in the menu
     # Some example items
     Report_Island_Name:
-      material: ANVIL   # The material which will be displayed in the menu for this item
-      slot: 8   # The number of slot in which the item will be
+      material: DIAMOND_BLOCK   # The material which will be displayed in the menu for this item
+      slot: 0   # The number of slot in which the item will be (starts from index 0)
       amount: 1   # The Amount of items in a slot
       glow: false   # Whether the item glow or not
-      display_name: '&aReport Island Name'   # The display name of this item
+      display_name: '&aDIAMONDS'   # The display name of this item
       lore:   # Lore(s) of this item
-        - '&7You can report this island'
-        - '&7if you think it has an'
-        - '&7in appropriate name.'
+        - '&7Give you some Diamonds!'
+        - '&7This is just for example'
+        - '&7change this in config'
         - ''
-        - '&eClick to Report it!'
+        - '&eClick to get!'
       commands:   # The list of commands which will be executed when the player will right/left click on it
       # (It has a built-in command 'CLOSE' which will close the menu and if you put 'CONSOLE: ' in before
       # any command it will execute it as console else player)
-        - 'CONSOLE: say edit the config.yml file in the plugin/GameMenu folder'
-        - 'CONSOLE: say Visit me at paper hangar: https://hangar.papermc.io/ItzLoghotXD/GameMenu'
-        - 'CONSOLE: say Visit me at modrinth: https://modrinth.com/plugin/game-menu'
-        - 'CONSOLE: say Visit me at spigot: https://www.spigotmc.org/resources/gamemenu.122426'
-        - 'CONSOLE: say or found any issue then report it here: https://github.com/ItzLoghotXD/GameMenu/issues'
+        - 'CONSOLE: give %player% diamond'
     Crafting_Table:
       material: CRAFTING_TABLE
-      slot: 31
+      slot: 4
       amount: 1
-      glow: false
+      glow: true
       display_name: '&aCrafting Table'
       lore:
         - '&7Opens the Crafting Grid.'
+        - ''
+        - '&7(Will not actually open a'
+        - '&7crafting grid, just for'
+        - '&7example) edit in config'
         - ''
         - '&eClick to open!'
       commands:
@@ -85,7 +86,7 @@ menu:
         - 'CONSOLE: say or found any issue then report it here: https://github.com/ItzLoghotXD/GameMenu/issues'
     CLOSE:
       material: BARRIER
-      slot: 49
+      slot: 8
       display_name: '&4Close'
       commands:
         - 'CLOSE'

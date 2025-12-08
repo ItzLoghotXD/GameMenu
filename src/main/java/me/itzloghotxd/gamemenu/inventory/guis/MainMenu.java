@@ -1,7 +1,7 @@
 package me.itzloghotxd.gamemenu.inventory.guis;
 
 import me.itzloghotxd.gamemenu.GamemenuPlugin;
-import me.itzloghotxd.gamemenu.config.ConfigType;
+import me.itzloghotxd.gamemenu.config.ConfigManager;
 import me.itzloghotxd.gamemenu.inventory.AbstractInventory;
 import me.itzloghotxd.gamemenu.inventory.InventoryPlayer;
 import me.itzloghotxd.gamemenu.utility.PlaceholderUtil;
@@ -19,14 +19,16 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.List;
 import java.util.Objects;
 
+@SuppressWarnings({"deprecation", "ManualMinMaxCalculation"})
 public class MainMenu extends AbstractInventory {
-    private Player player;
+    private final Player player;
 
     public MainMenu(InventoryPlayer inventoryPlayer) {
         super(inventoryPlayer);
+        player = inventoryPlayer.getPlayer();
     }
 
-    FileConfiguration config = GamemenuPlugin.getPlugin().getConfigManager().getConfig(ConfigType.SETTINGS);
+    FileConfiguration config = GamemenuPlugin.getPlugin().getConfigManager().getConfig(ConfigManager.ConfigType.SETTINGS);
 
     @Override
     public String getInventoryName() {
@@ -52,6 +54,7 @@ public class MainMenu extends AbstractInventory {
 
         return slots;
     }
+
     @Override
     public void handleInventory(InventoryClickEvent event) {
 
@@ -80,7 +83,6 @@ public class MainMenu extends AbstractInventory {
         }
 
         if (item != null) {
-            player = (Player) event.getWhoClicked();
             List<String> commands = config.getStringList(item + ".commands");
             for (String command : commands) {
                 command = PlaceholderUtil.setPlaceholders(command, player);

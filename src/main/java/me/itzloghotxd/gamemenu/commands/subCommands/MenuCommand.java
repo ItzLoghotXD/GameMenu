@@ -12,6 +12,7 @@ public class MenuCommand implements Command {
     @Override
     public void execute(CommandSender sender, String[] args) {
         if (sender instanceof Player player){
+            player.closeInventory();
             MainMenu menu = new MainMenu(GamemenuPlugin.getInventoryPlayer(player));
             menu.open();
         }

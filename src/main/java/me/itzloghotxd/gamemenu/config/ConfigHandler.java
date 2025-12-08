@@ -16,34 +16,38 @@ public class ConfigHandler {
 
     public ConfigHandler(JavaPlugin plugin, String name) {
         this.plugin = plugin;
-        this.name = name + ".yml";
-        this.file = new File(plugin.getDataFolder(), this.name);
-        this.configuration = new YamlConfiguration();
+        if (!name.endsWith(".yml")) {
+            this.name = name + ".yml";
+        } else {
+            this.name = name;
+        }
+        file = new File(plugin.getDataFolder(), this.name);
+        configuration = new YamlConfiguration();
     }
 
     public void saveDefaultConfig() {
-        if (!this.file.exists()) {
-            this.plugin.saveResource(this.name, false);
+        if (!file.exists()) {
+            plugin.saveResource(name, false);
         }
 
         try {
-            this.configuration.load(this.file);
+            configuration.load(file);
         } catch (IOException | InvalidConfigurationException var1) {
             var1.printStackTrace();
-            this.plugin.getLogger().severe("============= CONFIGURATION ERROR =============");
-            this.plugin.getLogger().severe("There was an error loading " + this.name);
-            this.plugin.getLogger().severe("Please check for any obvious configuration mistakes");
-            this.plugin.getLogger().severe("such as using tabs for spaces or forgetting to end quotes");
-            this.plugin.getLogger().severe("before reporting to the developer. The plugin will now disable..");
-            this.plugin.getLogger().severe("============= CONFIGURATION ERROR =============");
-            this.plugin.getServer().getPluginManager().disablePlugin(this.plugin);
+            plugin.getLogger().severe("============= CONFIGURATION ERROR =============");
+            plugin.getLogger().severe("There was an error loading " + name);
+            plugin.getLogger().severe("Please check for any obvious configuration mistakes");
+            plugin.getLogger().severe("such as using tabs for spaces or forgetting to end quotes");
+            plugin.getLogger().severe("before reporting to the developer. The plugin will now disable..");
+            plugin.getLogger().severe("============= CONFIGURATION ERROR =============");
+            plugin.getServer().getPluginManager().disablePlugin(plugin);
         }
     }
 
     public void save() {
-        if (this.configuration != null && this.file != null) {
+        if (configuration != null && file != null) {
             try {
-                this.getConfig().save(this.file);
+                getConfig().save(file);
             } catch (IOException var2) {
                 var2.printStackTrace();
             }
@@ -51,10 +55,10 @@ public class ConfigHandler {
     }
 
     public void reload() {
-        this.configuration = YamlConfiguration.loadConfiguration(this.file);
+        configuration = YamlConfiguration.loadConfiguration(file);
     }
 
     public FileConfiguration getConfig() {
-        return this.configuration;
+        return configuration;
     }
 }

@@ -7,9 +7,9 @@ load: STARTUP
 #loadbefore: [none]
 #depend: [none]
 softdepend: ["PlaceholderAPI"]
-authors: [ItzLoghotXD]
+author: ItzLoghotXD
 description: A simple minecraft Server Menu plugin.
-#website: none
+website: '${project.url}'
 commands:
   gamemenu:
     description: The main command for GameMenu.

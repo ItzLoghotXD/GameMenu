@@ -6,6 +6,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.jetbrains.annotations.NotNull;
 
+@SuppressWarnings("deprecation")
 public abstract class AbstractInventory implements InventoryHolder {
 
     protected Inventory inventory;
@@ -25,11 +26,8 @@ public abstract class AbstractInventory implements InventoryHolder {
     public abstract void setItems();
 
     public void open(){
-
         inventory = Bukkit.createInventory(this, getSlots(), getInventoryName());
-
         this.setItems();
-
         inventoryPlayer.getPlayer().openInventory(inventory);
     }
 

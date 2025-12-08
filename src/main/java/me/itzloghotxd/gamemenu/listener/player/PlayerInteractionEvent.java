@@ -1,5 +1,7 @@
 package me.itzloghotxd.gamemenu.listener.player;
 
+import me.itzloghotxd.gamemenu.GamemenuPlugin;
+import me.itzloghotxd.gamemenu.inventory.guis.MainMenu;
 import me.itzloghotxd.gamemenu.utility.item.ItemHandler;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,7 +21,9 @@ public class PlayerInteractionEvent implements Listener {
         ItemStack itemInMainHand = event.getPlayer().getInventory().getItemInMainHand();
 
         if (ItemHandler.isCustomItem(itemInMainHand, "hotbar_item", "server_menu_item")) {
-            event.getPlayer().performCommand("gm menu");
+            event.getPlayer().closeInventory();
+            MainMenu menu = new MainMenu(GamemenuPlugin.getInventoryPlayer(event.getPlayer()));
+            menu.open();
             event.setCancelled(true);
         }
     }

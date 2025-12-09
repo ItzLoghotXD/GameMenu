@@ -1,16 +1,19 @@
 package me.itzloghotxd.gamemenu.inventory;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+
+import java.util.UUID;
 
 public class InventoryPlayer {
 
-    private Player player;
+    private final UUID uuid;
 
     public InventoryPlayer(Player player) {
-        this.player = player;
+        uuid = player.getUniqueId();
     }
 
     public Player getPlayer() {
-        return player;
+        return Bukkit.getPlayer(uuid);
     }
 }

@@ -14,9 +14,13 @@ import me.itzloghotxd.gamemenu.utility.item.ItemManager;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
+import java.util.UUID;
 import java.util.logging.Level;
 
 public final class GamemenuPlugin extends JavaPlugin{
@@ -28,7 +32,7 @@ public final class GamemenuPlugin extends JavaPlugin{
     private CommandManager commandManager;
     private ItemManager itemManager;
 
-    private static final HashMap<Player, InventoryPlayer> playerInventory = new HashMap<>();
+    private static final HashMap<UUID, InventoryPlayer> playerInventory = new HashMap<>();
 
     public GamemenuPlugin() {
     }
@@ -81,6 +85,12 @@ public final class GamemenuPlugin extends JavaPlugin{
         getServer().getPluginManager().registerEvents(new PlayerOffHandSwapEvent(), this);
         getServer().getPluginManager().registerEvents(new PlayerInteractionEvent(), this);
         getServer().getPluginManager().registerEvents(new InventoryListener(), this);
+        getServer().getPluginManager().registerEvents(new Listener() {
+            @EventHandler
+            public void onQuit(PlayerQuitEvent event) {
+                playerInventory.remove(event.getPlayer().getUniqueId());
+            }
+        }, this);
     }
 
     public static GamemenuPlugin getPlugin() {
@@ -102,11 +112,11 @@ public final class GamemenuPlugin extends JavaPlugin{
     public static InventoryPlayer getInventoryPlayer(Player player) {
         InventoryPlayer inventoryPlayer;
 
-        if (playerInventory.containsKey(player)) {
-            return playerInventory.get(player);
+        if (playerInventory.containsKey(player.getUniqueId())) {
+            return playerInventory.get(player.getUniqueId());
         }else {
             inventoryPlayer = new InventoryPlayer(player);
-            playerInventory.put(player, inventoryPlayer);
+            playerInventory.put(player.getUniqueId(), inventoryPlayer);
 
             return inventoryPlayer;
         }

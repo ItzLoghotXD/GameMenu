@@ -26,9 +26,11 @@ public abstract class AbstractInventory implements InventoryHolder {
     public abstract void setItems();
 
     public void open(){
+//        Bukkit.broadcastMessage("menu command called");
         inventory = Bukkit.createInventory(this, getSlots(), getInventoryName());
         this.setItems();
         inventoryPlayer.getPlayer().openInventory(inventory);
+//        Bukkit.getPlayer(inventoryPlayer.getPlayer().getName()).sendMessage("??");
     }
 
     @Override
